@@ -69,18 +69,8 @@ class NeterraProxy extends NanoHTTPD {
     }
 
     private String getStream(String issueId) {
-        long NOW = System.currentTimeMillis();
+        checkAuthentication();
         String channelPlayLink = "";
-
-        // Check if authentication is needed
-        if (NOW > expireTime) {
-            cookieJar.clear();
-            if (authenticate()) {
-                expireTime = NOW + 28800000;
-            } else {
-                pipe.setNotification("Failed to Authenticate");
-            }
-        }
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .cookieJar(cookieJar)
@@ -104,32 +94,8 @@ class NeterraProxy extends NanoHTTPD {
         return channelPlayLink;
     }
 
-    private boolean authenticate() {
-        boolean logged = false;
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .cookieJar(cookieJar)
-                .build();
-        RequestBody formBody = new FormBody.Builder()
-                .add("login_username", username)
-                .add("login_password", password)
-                .add("login", "1")
-                .add("login_type", "1")
-                .build();
-        Request request = new Request.Builder()
-                .url("http://www.neterra.tv/user/login_page")
-                .post(formBody)
-                .build();
-        try {
-            okhttp3.Response response = client.newCall(request).execute();
-            logged = response.body().string().contains("var LOGGED = '1'");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return logged;
-    }
-
     private String getM3U8() {
+        checkAuthentication();
         String channelJsonString = "";
 
         OkHttpClient client = new OkHttpClient.Builder()
@@ -146,4 +112,33 @@ class NeterraProxy extends NanoHTTPD {
         }
         return Utils.generatePlaylist(channelJsonString, host, port);
     }
+
+    private void checkAuthentication() {
+        long NOW = System.currentTimeMillis();
+
+        // Check if authentication is needed
+        if (NOW > expireTime) {
+            cookieJar.clear();
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .cookieJar(cookieJar)
+                    .build();
+            RequestBody formBody = new FormBody.Builder()
+                    .add("login_username", username)
+                    .add("login_password", password)
+                    .add("login", "1")
+                    .add("login_type", "1")
+                    .build();
+            Request request = new Request.Builder()
+                    .url("http://www.neterra.tv/user/login_page")
+                    .post(formBody)
+                    .build();
+            try {
+                client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
