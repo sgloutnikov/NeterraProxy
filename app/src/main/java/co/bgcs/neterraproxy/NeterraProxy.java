@@ -6,9 +6,11 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.google.gson.JsonObject;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import fi.iki.elonen.NanoHTTPD;
@@ -25,6 +27,7 @@ class NeterraProxy extends NanoHTTPD {
     private String password;
     private long expireTime;
     private ClearableCookieJar cookieJar;
+    private JsonObject channelsJson;
 
     NeterraProxy(String host, int port, Pipe pipe) {
         super(host, port);
@@ -39,6 +42,10 @@ class NeterraProxy extends NanoHTTPD {
         cookieJar = new PersistentCookieJar(new SetCookieCache(),
                 new SharedPrefsCookiePersistor(context));
         expireTime = 0;
+    }
+
+    void initAssets(JsonObject channelsJson) {
+        this.channelsJson = channelsJson;
     }
 
     @Override

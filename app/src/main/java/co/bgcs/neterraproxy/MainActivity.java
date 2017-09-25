@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             mainService = ((MainService.LocalBinder) service).getService();
             mainService.loadPreferences(sharedPreferences);
+            mainService.loadAssets();
             isBound = true;
         }
 
@@ -98,7 +99,10 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("password", passwordEditText.getText().toString().trim());
         editor.commit();
 
-        if (isBound) mainService.loadPreferences(sharedPreferences);
+        if (isBound) {
+            mainService.loadPreferences(sharedPreferences);
+            mainService.loadAssets();
+        }
         Toast.makeText(getApplicationContext(), "Preferences saved.", Toast.LENGTH_SHORT).show();
     }
 }

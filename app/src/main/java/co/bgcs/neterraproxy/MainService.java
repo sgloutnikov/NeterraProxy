@@ -9,7 +9,12 @@ import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import java.io.IOException;
+import java.io.InputStream;
 
 
 public class MainService extends Service implements Pipe {
@@ -61,6 +66,24 @@ public class MainService extends Service implements Pipe {
                 getApplicationContext()
         );
     }
+
+    void loadAssets() {
+        String channelsJsonString = "";
+        try {
+            InputStream inputStream = getAssets().open("channels.json");
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+            inputStream.read(buffer);
+            inputStream.close();
+            channelsJsonString = new String(buffer, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JsonObject channelsJson = new Gson().fromJson(channelsJsonString, JsonObject.class);
+        proxy.initAssets(channelsJson);
+    }
+
 
     class LocalBinder extends Binder {
         MainService getService() {
