@@ -1,13 +1,13 @@
 {
   "130325": {
-	"name": "БНТ 1",
+    "name": "БНТ 1",
     "tvg-id": "BNT1",
     "tvg-name": "BNT1",
     "group": "Политематични",
     "logo": "http://logos.kodibg.org/bnt1.png"
   },
   "217863": {
-	"name": "БНТ HD",
+    "name": "БНТ HD",
     "tvg-id": "BNTHD",
     "tvg-name": "BNTHD",
     "group": "Политематични",
@@ -175,7 +175,7 @@
     "logo": "http://logos.kodibg.org/automotorsport.png"
   },
   "1021865": {
-	"name": "Диема Sport",
+    "name": "Диема Sport",
     "tvg-id": "DiemaSport",
     "tvg-name": "DiemaSport",
     "group": "Спортни",

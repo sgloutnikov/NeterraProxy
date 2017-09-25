@@ -18,6 +18,7 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 class NeterraProxy extends NanoHTTPD {
     private final String host;
@@ -53,7 +54,6 @@ class NeterraProxy extends NanoHTTPD {
         Response res = super.serve(session);
 
         String uri = session.getUri();
-        //TODO: Add EPG. Might need to host own xmltv.
         if (uri.equals("/epg.xml")) {
             pipe.setNotification("Now serving: EPG");
             res = newFixedLengthResponse(Response.Status.REDIRECT, "application/xml", null);
@@ -63,9 +63,14 @@ class NeterraProxy extends NanoHTTPD {
             List<String> ch = session.getParameters().get("ch");
 
             if (ch == null) {
-                pipe.setNotification("Now serving: Playlist");
-                res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getM3U8());
-                res.addHeader("Content-Disposition", "attachment; filename=\"playlist.m3u8\"");
+                // Fresh authentication every time playlist is served
+                if(authenticate()) {
+                    pipe.setNotification("Now serving: Playlist");
+                    res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getM3U8());
+                    res.addHeader("Content-Disposition", "attachment; filename=\"playlist.m3u8\"");
+                } else {
+                    pipe.setNotification("Failed to login. Check username and password.");
+                }
             } else {
                 pipe.setNotification("Now serving: Channel " + ch.get(0));
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
@@ -102,9 +107,7 @@ class NeterraProxy extends NanoHTTPD {
     }
 
     private String getM3U8() {
-        checkAuthentication();
         String channelJsonString = "";
-
         OkHttpClient client = new OkHttpClient.Builder()
                 .cookieJar(cookieJar)
                 .build();
@@ -125,27 +128,37 @@ class NeterraProxy extends NanoHTTPD {
 
         // Check if authentication is needed
         if (NOW > expireTime) {
-            cookieJar.clear();
-
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .cookieJar(cookieJar)
-                    .build();
-            RequestBody formBody = new FormBody.Builder()
-                    .add("login_username", username)
-                    .add("login_password", password)
-                    .add("login", "1")
-                    .add("login_type", "1")
-                    .build();
-            Request request = new Request.Builder()
-                    .url("http://www.neterra.tv/user/login_page")
-                    .post(formBody)
-                    .build();
-            try {
-                client.newCall(request).execute();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            authenticate();
         }
+    }
+
+    private boolean authenticate() {
+        boolean logged = false;
+        cookieJar.clear();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .cookieJar(cookieJar)
+                .build();
+        RequestBody formBody = new FormBody.Builder()
+                .add("login_username", username)
+                .add("login_password", password)
+                .add("login", "1")
+                .add("login_type", "1")
+                .build();
+        Request request = new Request.Builder()
+                .url("http://www.neterra.tv/user/login_page")
+                .post(formBody)
+                .build();
+        try {
+            okhttp3.Response response = client.newCall(request).execute();
+            logged = response.body().string().contains("var LOGGED = '1'");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(logged) {
+            expireTime = System.currentTimeMillis() + 28800000;
+        }
+        return logged;
     }
 
 }
