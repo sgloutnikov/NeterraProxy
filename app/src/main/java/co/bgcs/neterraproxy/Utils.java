@@ -12,19 +12,33 @@ class Utils {
         return channel.get("play_link").getAsString();
     }
 
-    static String generatePlaylist(String jsonBody, String host, int port) {
-        JsonArray channelArray = new JsonParser().parse(jsonBody).getAsJsonObject()
+    static String generatePlaylist(String contentJson, JsonObject channelsJson, String host, int port) {
+        JsonArray neterraContentArray = new JsonParser().parse(contentJson).getAsJsonObject()
                 .get("tv_choice_result").getAsJsonArray();
 
         StringBuilder m3u8 = new StringBuilder("#EXTM3U\n");
-        for (int i = 0; i < channelArray.size(); i++) {
-            JsonObject channel = channelArray.get(i).getAsJsonArray().get(0).getAsJsonObject();
+        for (int i = 0; i < neterraContentArray.size(); i++) {
+            JsonObject channel = neterraContentArray.get(i).getAsJsonArray().get(0).getAsJsonObject();
             String chanId = channel.get("issues_id").getAsString();
             String chanName = channel.get("issues_name").getAsString();
+            String tvgId = "";
+            String tvgName = "";
+            String group = "";
+            String logo = "";
 
-            m3u8.append(String.format("#EXTINF:-1 tvg-id=\"%s\" tvg-logo=\"%s\",%s\nhttp://%s:%s/playlist.m3u8?ch=%s\n",
-                    chanId, "", chanName, host, port, chanId));
+            JsonObject definedChannel  = channelsJson.getAsJsonObject(chanId);
+            if (definedChannel != null) {
+                chanName = definedChannel.get("name").getAsString();
+                tvgId = definedChannel.get("tvg-id").getAsString();
+                tvgName = definedChannel.get("tvg-name").getAsString();
+                group = definedChannel.get("group").getAsString();
+                logo = definedChannel.get("logo").getAsString();
+            }
+            m3u8.append(String.format("#EXTINF:-1 tvg-id=\"%s\" tvg-name=\"%s\" tvg-logo=\"%s\" " +
+                            "group-title=\"%s\",%s\nhttp://%s:%s/playlist.m3u8?ch=%s\n",
+                    tvgId, tvgName, logo, group, chanName, host, port, chanId));
         }
+
         return m3u8.toString();
     }
 }

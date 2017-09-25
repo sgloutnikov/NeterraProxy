@@ -57,8 +57,7 @@ class NeterraProxy extends NanoHTTPD {
         if (uri.equals("/epg.xml")) {
             pipe.setNotification("Now serving: EPG");
             res = newFixedLengthResponse(Response.Status.REDIRECT, "application/xml", null);
-            res.addHeader("Location", "ADD EPG");
-
+            res.addHeader("Location", "http://epg.kodibg.org/dl.php");
         } else if (uri.startsWith("/playlist.m3u8")) {
             List<String> ch = session.getParameters().get("ch");
 
@@ -107,7 +106,7 @@ class NeterraProxy extends NanoHTTPD {
     }
 
     private String getM3U8() {
-        String channelJsonString = "";
+        String neterraContentJsonString = "";
         OkHttpClient client = new OkHttpClient.Builder()
                 .cookieJar(cookieJar)
                 .build();
@@ -116,11 +115,11 @@ class NeterraProxy extends NanoHTTPD {
                 .build();
         try {
             okhttp3.Response response = client.newCall(request).execute();
-            channelJsonString = response.body().string();
+            neterraContentJsonString = response.body().string();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Utils.generatePlaylist(channelJsonString, host, port);
+        return Utils.generatePlaylist(neterraContentJsonString, channelsJson, host, port);
     }
 
     private void checkAuthentication() {
