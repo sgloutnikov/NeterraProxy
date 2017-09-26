@@ -26,4 +26,4 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 
 ## Acknowledgments
 * SmoothProxy
-* KodiBG.org for providing the EPG
+* KodiBG.org for providing the EPG source
