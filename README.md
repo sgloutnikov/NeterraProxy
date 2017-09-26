@@ -24,6 +24,12 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
     * Playlist URL: http://localhost:8888/playlist.m3u8
     * EPG URL: http://localhost:8888/epg.xml
 
+## Perfect Player Example
+![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp1.png)
+![PerfectPlayer2](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp2.png)
+
+**Note:** Some channels require the HW+ decoder in order to play--select it in the playback settings.
+
 ## Acknowledgments
 * SmoothProxy
 * KodiBG.org for providing the EPG source
