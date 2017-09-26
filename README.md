@@ -12,7 +12,7 @@ NeterraProxy is an on-demand m3u8 playlist/playback daemon for Neterra.tv, runni
 Have the freedom to watch on your desired IPTV player or TV (Perfect Player, Android Live Channels, GSE Smart IPTV Player, etc). Play links issued by Neterra expire after 12 hours to prevent abuse. Traditional playlist generators need to be run again in order to generate new links. This is not the case for NeterraProxy.
 
 ## How?
-NeterraProxy generates a specialized playlist that points to itself rather than Neterra. When NeterraProxy receives a playback request it determines the context of the request and responds with a 301 redirect to a valid corresponding Neterra play link. It automatically reauthenticates if the session has expired.
+NeterraProxy generates a specialized playlist that points to itself rather than Neterra. When NeterraProxy receives a playback request it determines the context of the request and responds with a 301 redirect to a valid corresponding Neterra play link. It automatically re-authenticates if the session has expired.
 
 ---
 ## Instructions
