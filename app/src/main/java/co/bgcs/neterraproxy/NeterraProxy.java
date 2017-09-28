@@ -10,7 +10,6 @@ import com.google.gson.JsonObject;
 
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import fi.iki.elonen.NanoHTTPD;
@@ -18,7 +17,6 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 
 class NeterraProxy extends NanoHTTPD {
     private final String host;
@@ -28,6 +26,7 @@ class NeterraProxy extends NanoHTTPD {
     private String password;
     private long expireTime;
     private ClearableCookieJar cookieJar;
+    private OkHttpClient client;
     private JsonObject channelsJson;
 
     NeterraProxy(String host, int port, Pipe pipe) {
@@ -42,6 +41,9 @@ class NeterraProxy extends NanoHTTPD {
         this.password = password;
         cookieJar = new PersistentCookieJar(new SetCookieCache(),
                 new SharedPrefsCookiePersistor(context));
+        client = new OkHttpClient.Builder()
+                .cookieJar(cookieJar)
+                .build();
         expireTime = 0;
     }
 
@@ -83,9 +85,6 @@ class NeterraProxy extends NanoHTTPD {
         checkAuthentication();
         String channelPlayLink = "";
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .cookieJar(cookieJar)
-                .build();
         RequestBody formBody = new FormBody.Builder()
                 .add("issue_id", issueId)
                 .add("quality", "0")
@@ -107,9 +106,6 @@ class NeterraProxy extends NanoHTTPD {
 
     private String getM3U8() {
         String neterraContentJsonString = "";
-        OkHttpClient client = new OkHttpClient.Builder()
-                .cookieJar(cookieJar)
-                .build();
         Request request = new Request.Builder()
                 .url("http://www.neterra.tv/content/live")
                 .build();
@@ -134,9 +130,6 @@ class NeterraProxy extends NanoHTTPD {
     private boolean authenticate() {
         boolean logged = false;
         cookieJar.clear();
-        OkHttpClient client = new OkHttpClient.Builder()
-                .cookieJar(cookieJar)
-                .build();
         RequestBody formBody = new FormBody.Builder()
                 .add("login_username", username)
                 .add("login_password", password)
