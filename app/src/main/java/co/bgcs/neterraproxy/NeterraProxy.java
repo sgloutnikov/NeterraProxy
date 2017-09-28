@@ -83,7 +83,7 @@ class NeterraProxy extends NanoHTTPD {
 
     private String getStream(String issueId) {
         checkAuthentication();
-        String channelPlayLink = "";
+        String playLinkJson = "";
 
         RequestBody formBody = new FormBody.Builder()
                 .add("issue_id", issueId)
@@ -96,12 +96,12 @@ class NeterraProxy extends NanoHTTPD {
                 .build();
         try {
             okhttp3.Response response = client.newCall(request).execute();
-            channelPlayLink = Utils.getPlayLink(response.body().string());
+            playLinkJson = response.body().string();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return channelPlayLink;
+        return Utils.getPlayLink(playLinkJson);
     }
 
     private String getM3U8() {
