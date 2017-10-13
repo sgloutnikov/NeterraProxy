@@ -21,8 +21,8 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 3) Enter your Neterra.tv **Username** and **Password** and press **Save**.
 4) Back out of NeterraProxy (or press Home) to leave it running. **Exit** will terminate NeterraProxy.
 5) Use the following URL to connect NeterraProxy with your favorite IPTV player:
-    * Playlist URL: http://localhost:8888/playlist.m3u8
-    * EPG URL: http://localhost:8888/epg.xml
+    * Playlist URL: http://localhost:8889/playlist.m3u8
+    * EPG URL: http://localhost:8889/epg.xml
 
 ## Perfect Player Example
 ![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp1.png)
