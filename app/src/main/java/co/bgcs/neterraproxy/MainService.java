@@ -18,7 +18,7 @@ import java.io.InputStream;
 
 
 public class MainService extends Service implements Pipe {
-    private final NeterraProxy proxy = new NeterraProxy("127.0.0.1", 8888, this);
+    private final NeterraProxy proxy = new NeterraProxy("127.0.0.1", 8889, this);
     private final IBinder binder = new LocalBinder();
 
     @Override

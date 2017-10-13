@@ -62,6 +62,7 @@ class NeterraProxy extends NanoHTTPD {
             res.addHeader("Location", "http://epg.kodibg.org/dl.php");
         } else if (uri.startsWith("/playlist.m3u8")) {
             List<String> ch = session.getParameters().get("ch");
+            List<String> chName = session.getParameters().get("name");
 
             if (ch == null) {
                 // Fresh authentication every time playlist is served
@@ -73,7 +74,7 @@ class NeterraProxy extends NanoHTTPD {
                     pipe.setNotification("Failed to login. Check username and password.");
                 }
             } else {
-                pipe.setNotification("Now serving: Channel " + ch.get(0));
+                pipe.setNotification("Now serving: Channel " + chName.get(0));
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
                 res.addHeader("Location", getStream(ch.get(0)));
             }

@@ -4,6 +4,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 
 class Utils {
 
@@ -40,9 +44,15 @@ class Utils {
                 group = definedChannel.get("group").getAsString();
                 logo = definedChannel.get("logo").getAsString();
             }
+            String encodedChanName = null;
+            try {
+                encodedChanName = URLEncoder.encode(chanName, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             m3u8.append(String.format("#EXTINF:-1 tvg-id=\"%s\" tvg-name=\"%s\" tvg-logo=\"%s\" " +
-                            "group-title=\"%s\",%s\nhttp://%s:%s/playlist.m3u8?ch=%s\n",
-                    tvgId, tvgName, logo, group, chanName, host, port, chanId));
+                            "group-title=\"%s\",%s\nhttp://%s:%s/playlist.m3u8?ch=%s&name=%s\n",
+                    tvgId, tvgName, logo, group, chanName, host, port, chanId, encodedChanName));
         }
 
         return m3u8.toString();
