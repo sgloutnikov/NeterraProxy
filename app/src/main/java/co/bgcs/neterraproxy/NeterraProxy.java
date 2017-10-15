@@ -74,7 +74,7 @@ class NeterraProxy extends NanoHTTPD {
                     pipe.setNotification("Failed to login. Check username and password.");
                 }
             } else {
-                pipe.setNotification("Now serving: Channel " + chName.get(0));
+                pipe.setNotification("Now serving: " + chName.get(0));
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
                 res.addHeader("Location", getStream(ch.get(0)));
             }
