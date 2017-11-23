@@ -15,10 +15,11 @@ class Utils {
         JsonObject channel = new JsonParser().parse(jsonBody).getAsJsonObject();
         String playLink = channel.get("play_link").getAsString();
 
+        //TODO: Verify playback without cleaning url. New backend changes might have fixed the issues.
         //Cleanup DVR features in live stream that were causing problems for some channels
-        playLink = playLink.replace(":443", "");
-        playLink = playLink.replace("/dvr", "/live");
-        playLink = playLink.replace("DVR&", "");
+        //playLink = playLink.replace(":443", "");
+        //playLink = playLink.replace("/dvr", "/live");
+        //playLink = playLink.replace("DVR&", "");
         return playLink;
     }
 
