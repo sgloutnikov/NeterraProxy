@@ -418,6 +418,20 @@
     "tvg-name": "news",
     "group": "Новинарски",
     "logo": "http://logos.kodibg.org/bulgaria24.png"
+  },
+  "130329": {
+    "name": "Вест ТВ",
+    "tvg-id": "VTV",
+    "tvg-name": "VTV",
+    "group": "Политематични",
+    "logo": "http://logos.kodibg.org/vtv.png"
+  },
+  "1009930": {
+    "name": "Roma TV",
+    "tvg-id": "",
+    "tvg-name": "",
+    "group": "Музикални",
+    "logo": "https://assets.neterra.tv/media/romatv.png"
   }
   
 }
