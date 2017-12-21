@@ -432,6 +432,20 @@
     "tvg-name": "",
     "group": "Музикални",
     "logo": "https://assets.neterra.tv/media/romatv.png"
+  },
+  "1049509": {
+    "name": "bTV HD",
+    "tvg-id": "bTV",
+    "tvg-name": "bTV",
+    "group": "Политематични",
+    "logo": "http://logos.kodibg.org/btv.png"
+  },
+  "1049510": {
+    "name": "bTV Action HD",
+    "tvg-id": "bTVAction",
+    "tvg-name": "bTVAction",
+    "group": "Филмови",
+    "logo": "http://logos.kodibg.org/btvaction.png"
   }
   
 }
