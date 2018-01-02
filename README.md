@@ -20,7 +20,7 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 5) Use the following URL to connect NeterraProxy with your favorite IPTV player:
     * Playlist URL: http://localhost:8889/playlist.m3u8
     * EPG URL: http://localhost:8889/epg.xml
-
+---
 ## Perfect Player Example + Settings
 ![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp1.png)
 
@@ -36,6 +36,7 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 
 ![PerfectPlayer4](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp4.png)
 
+---
 ## Acknowledgments
 * SmoothProxy
 * KodiBG.org for providing the EPG source
