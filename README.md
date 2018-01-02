@@ -21,11 +21,20 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
     * Playlist URL: http://localhost:8889/playlist.m3u8
     * EPG URL: http://localhost:8889/epg.xml
 
-## Perfect Player Example
+## Perfect Player Example + Settings
 ![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp1.png)
+
+* Playlist:
+
 ![PerfectPlayer2](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp2.png)
 
-**Note:** Some channels require the HW+ decoder in order to play--select it in the playback settings.
+* EPG:
+
+![PerfectPlayer3](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp3.png)
+
+* Decoder:
+
+![PerfectPlayer4](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp4.png)
 
 ## Acknowledgments
 * SmoothProxy
