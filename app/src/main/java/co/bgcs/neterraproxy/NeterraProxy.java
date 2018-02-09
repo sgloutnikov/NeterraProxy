@@ -88,7 +88,7 @@ class NeterraProxy extends NanoHTTPD {
     private String getStream(String chanId) {
         checkAuthentication();
         String playLinkJson = "";
-        String playUrl = "http://www.neterra.tv/live/play/" + chanId;
+        String playUrl = "http://www.neterra.tv/live/play/" + chanId + "?quality=25";
 
         Request request = new Request.Builder()
                 .url(playUrl)
