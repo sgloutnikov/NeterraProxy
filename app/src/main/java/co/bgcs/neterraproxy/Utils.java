@@ -1,37 +1,42 @@
 package co.bgcs.neterraproxy;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 
 
 class Utils {
 
     static String getPlayLink(String jsonBody) {
         JsonObject channel = new JsonParser().parse(jsonBody).getAsJsonObject();
-        String playLink = channel.get("play_link").getAsString();
+        String playLink = channel.get("url").getAsJsonObject().get("play").getAsString();
 
-        //TODO: Verify playback without cleaning url. New backend changes might have fixed the issues.
-        //Cleanup DVR features in live stream that were causing problems for some channels
-        //playLink = playLink.replace(":443", "");
-        //playLink = playLink.replace("/dvr", "/live");
-        //playLink = playLink.replace("DVR&", "");
         return playLink;
     }
 
-    static String generatePlaylist(String contentJson, JsonObject channelsJson, String host, int port) {
-        JsonArray neterraContentArray = new JsonParser().parse(contentJson).getAsJsonObject()
-                .get("tv_choice_result").getAsJsonArray();
+    static String generatePlaylist(String contentHTML, JsonObject channelsJson, String host, int port) {
+        Element channelsPlaylistElement = Jsoup.parse(contentHTML).selectFirst("ul.playlist-items");
+        Elements neterraPlaylist = channelsPlaylistElement.select("li");
 
         StringBuilder m3u8 = new StringBuilder("#EXTM3U\n");
-        for (int i = 0; i < neterraContentArray.size(); i++) {
-            JsonObject channel = neterraContentArray.get(i).getAsJsonArray().get(0).getAsJsonObject();
-            String chanId = channel.get("issues_id").getAsString();
-            String chanName = channel.get("issues_name").getAsString();
+
+        for (Element chan : neterraPlaylist) {
+            // Parse Channel Name and ID
+            String chanName = "";
+            String chanId = "";
+            Element chanLink = chan.selectFirst("a[href]");
+            if (chanLink != null) {
+                chanName = chanLink.attr("title");
+            } else { continue; }
+            chanId = chan.getElementsByClass("js-pl-favorite playlist-item__favorite")
+                    .first().attr("data-id");
+
             String tvgId = "";
             String tvgName = "";
             String group = "";

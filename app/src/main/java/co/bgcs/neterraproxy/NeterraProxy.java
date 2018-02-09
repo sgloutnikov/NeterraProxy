@@ -9,6 +9,9 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 import com.google.gson.JsonObject;
 
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -82,18 +85,13 @@ class NeterraProxy extends NanoHTTPD {
         return res;
     }
 
-    private String getStream(String issueId) {
+    private String getStream(String chanId) {
         checkAuthentication();
         String playLinkJson = "";
+        String playUrl = "http://www.neterra.tv/live/play/" + chanId;
 
-        RequestBody formBody = new FormBody.Builder()
-                .add("issue_id", issueId)
-                .add("quality", "0")
-                .add("type", "live")
-                .build();
         Request request = new Request.Builder()
-                .url("http://www.neterra.tv/content/get_stream")
-                .post(formBody)
+                .url(playUrl)
                 .build();
         try {
             okhttp3.Response response = client.newCall(request).execute();
@@ -106,17 +104,17 @@ class NeterraProxy extends NanoHTTPD {
     }
 
     private String getM3U8() {
-        String neterraContentJsonString = "";
+        String neterraContentHTMLString = "";
         Request request = new Request.Builder()
-                .url("http://www.neterra.tv/content/live")
+                .url("http://www.neterra.tv/live")
                 .build();
         try {
             okhttp3.Response response = client.newCall(request).execute();
-            neterraContentJsonString = response.body().string();
+            neterraContentHTMLString = response.body().string();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Utils.generatePlaylist(neterraContentJsonString, channelsJson, host, port);
+        return Utils.generatePlaylist(neterraContentHTMLString, channelsJson, host, port);
     }
 
     private void checkAuthentication() {
@@ -129,21 +127,37 @@ class NeterraProxy extends NanoHTTPD {
     }
 
     private boolean authenticate() {
+        String token = "";
         boolean logged = false;
         cookieJar.clear();
+
+        // Get CSRF Token
+        Request getRequest = new Request.Builder()
+                .url("http://www.neterra.tv/sign-in")
+                .build();
+        try {
+            okhttp3.Response response = client.newCall(getRequest).execute();
+            Document loginPageDoc = Jsoup.parse(response.body().string());
+            token = loginPageDoc.getElementById("wrapper").selectFirst("input[name=_token]")
+                    .attr("value");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Authenticate
         RequestBody formBody = new FormBody.Builder()
-                .add("login_username", username)
-                .add("login_password", password)
-                .add("login", "1")
-                .add("login_type", "1")
+                .add("_token", token)
+                .add("username", username)
+                .add("password", password)
                 .build();
         Request request = new Request.Builder()
-                .url("http://www.neterra.tv/user/login_page")
+                .url("http://www.neterra.tv/sign-in")
                 .post(formBody)
                 .build();
         try {
             okhttp3.Response response = client.newCall(request).execute();
-            logged = response.body().string().contains("var LOGGED = '1'");
+            // Check for something that only exists when authenticated.
+            logged = response.body().string().contains("account.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
