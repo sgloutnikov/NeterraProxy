@@ -11,10 +11,14 @@ import com.google.gson.JsonObject;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.List;
 
+import co.bgcs.neterraproxy.pojo.VODSeries;
+import co.bgcs.neterraproxy.pojo.VODSeriesItem;
 import fi.iki.elonen.NanoHTTPD;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -81,6 +85,21 @@ class NeterraProxy extends NanoHTTPD {
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
                 res.addHeader("Location", getStream(ch.get(0)));
             }
+        } else if (uri.startsWith("/vod.m3u8")) {
+            List<String> dataId = session.getParameters().get("id");
+            List<String> tag = session.getParameters().get("tag");
+            List<String> name = session.getParameters().get("name");
+
+            if (dataId == null) {
+                checkAuthentication();
+                pipe.setNotification("Now serving: VOD Playlist");
+                res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getVODM3U8());
+                res.addHeader("Content-Disposition", "attachment; filename=\"vod.m3u8\"");
+            } else {
+                pipe.setNotification("Now serving: " + name.get(0));
+                res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
+                res.addHeader("Location", getVODStream(tag.get(0), dataId.get(0)));
+            }
         }
         return res;
     }
@@ -89,6 +108,24 @@ class NeterraProxy extends NanoHTTPD {
         checkAuthentication();
         String playLinkJson = "";
         String playUrl = "http://www.neterra.tv/live/play/" + chanId + "?quality=25";
+
+        Request request = new Request.Builder()
+                .url(playUrl)
+                .build();
+        try {
+            okhttp3.Response response = client.newCall(request).execute();
+            playLinkJson = response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return Utils.getPlayLink(playLinkJson);
+    }
+
+    private String getVODStream(String tag, String dataId) {
+        checkAuthentication();
+        String playLinkJson = "";
+        String playUrl = "http://www.neterra.tv/videos/" + tag + "/play/" + dataId + "?quality=25";
 
         Request request = new Request.Builder()
                 .url(playUrl)
@@ -115,6 +152,48 @@ class NeterraProxy extends NanoHTTPD {
             e.printStackTrace();
         }
         return Utils.generatePlaylist(neterraContentHTMLString, channelsJson, host, port);
+    }
+
+    private String getVODM3U8() {
+        String vodJSONString = "";
+        Request request = new Request.Builder()
+                // Only favorites for now, maybe grow list to all later
+                .url("http://www.neterra.tv/videos/categories/favorites")
+                .build();
+        try {
+            okhttp3.Response response = client.newCall(request).execute();
+            vodJSONString = response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<VODSeries> seriesList = Utils.getVODSeriesList(vodJSONString);
+        for (VODSeries series : seriesList) {
+            String tag = series.getTag();
+            String vodItemsHTML = "";
+            // Get all items per series
+            request = new Request.Builder()
+                    .url("http://www.neterra.tv/videos/" + tag)
+                    .build();
+            try {
+                okhttp3.Response response = client.newCall(request).execute();
+                vodItemsHTML = response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Scrape all items and add to series list
+            Elements itemPlaylistElements = Jsoup.parse(vodItemsHTML).selectFirst("ul.playlist-items")
+                    .select("li");
+            for (Element item : itemPlaylistElements) {
+                Element urlElement = item.selectFirst("a[href]");
+                String title = urlElement.selectFirst("p").text();
+                String dataId = urlElement.attr("data-id").toString();
+                VODSeriesItem vodSeriesItem = new VODSeriesItem(title, dataId);
+                series.getVodSeriesItemList().add(vodSeriesItem);
+            }
+        }
+
+        return Utils.generateVODPlaylist(seriesList, host, port);
     }
 
     private void checkAuthentication() {

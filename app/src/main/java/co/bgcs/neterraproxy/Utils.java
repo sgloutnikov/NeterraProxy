@@ -1,5 +1,7 @@
 package co.bgcs.neterraproxy;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -9,6 +11,11 @@ import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
+import co.bgcs.neterraproxy.pojo.VODSeries;
+import co.bgcs.neterraproxy.pojo.VODSeriesItem;
 
 
 class Utils {
@@ -16,7 +23,6 @@ class Utils {
     static String getPlayLink(String jsonBody) {
         JsonObject channel = new JsonParser().parse(jsonBody).getAsJsonObject();
         String playLink = channel.get("url").getAsJsonObject().get("play").getAsString();
-
         return playLink;
     }
 
@@ -62,5 +68,43 @@ class Utils {
         }
 
         return m3u8.toString();
+    }
+
+    static String generateVODPlaylist(List<VODSeries> seriesList, String host, int port) {
+        StringBuilder m3u8 = new StringBuilder("#EXTM3U\n");
+
+        for (VODSeries series : seriesList) {
+            String group = series.getName();
+            String tag = series.getTag();
+
+            for (VODSeriesItem item : series.getVodSeriesItemList()) {
+                String title = item.getTitle();
+                String dataId = item.getDataId();
+
+                String encodedTitle = null;
+                try {
+                    encodedTitle = URLEncoder.encode(title, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                m3u8.append(String.format("#EXTINF:-1 group-title=\"%s\",%s\nhttp://%s:%s/vod.m3u8?id=%s&tag=%s&name=%s\n",
+                        group, title, host, port, dataId, tag, encodedTitle));
+            }
+        }
+        return m3u8.toString();
+    }
+
+    static List<VODSeries> getVODSeriesList(String vodJSONString) {
+        List<VODSeries> seriesList = new ArrayList<>();
+        JsonArray seriesJsonArray = new JsonParser().parse(vodJSONString).getAsJsonArray();
+
+        for (JsonElement jsonElement : seriesJsonArray) {
+            JsonObject seriesJsonObject = jsonElement.getAsJsonObject();
+            String name = seriesJsonObject.get("name").getAsString();
+            String tag = seriesJsonObject.get("tag").getAsString();
+            VODSeries series = new VODSeries(name, tag);
+            seriesList.add(series);
+        }
+        return seriesList;
     }
 }
