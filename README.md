@@ -22,19 +22,19 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
     * EPG URL: http://localhost:8889/epg.xml
 ---
 ## Perfect Player Example + Settings
-![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp1.png)
+![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp1.png)
 
 * Playlist:
 
-![PerfectPlayer2](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp2.png)
+![PerfectPlayer2](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp2.png)
 
 * EPG:
 
-![PerfectPlayer3](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp3.png)
+![PerfectPlayer3](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp3.png)
 
 * Decoder:
 
-![PerfectPlayer4](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/pp4.png)
+![PerfectPlayer4](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp4.png)
 
 ---
 ## Acknowledgments
