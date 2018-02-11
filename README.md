@@ -6,9 +6,11 @@
 
 [Instructions](#instructions)
 
-[Perfect Player Example & Settings](#perfect-player-example-&-settings)
+[Perfect Player Example & Settings](https://github.com/sgloutnikov/NeterraProxy#perfect-player-example--settings)
 
-[Video on Demand (Видеотека) [BG]](https://github.com/sgloutnikov/NeterraProxy/blob/master/README.md#video-on-demand-%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D1%82%D0%B5%D0%BA%D0%B0-perfect-player-example)
+[Video on Demand (Видеотека) [BG]](https://github.com/sgloutnikov/NeterraProxy#video-on-demand-%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D1%82%D0%B5%D0%BA%D0%B0)
+
+[Video on Demand (Видеотека) Perfect Player Example [BG]](https://github.com/sgloutnikov/NeterraProxy#video-on-demand-%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D1%82%D0%B5%D0%BA%D0%B0-perfect-player-example)
 
 ## What?
 NeterraProxy is an on-demand m3u8 playlist/playback daemon for Neterra.tv, running on Android. (4.0+).
