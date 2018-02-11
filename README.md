@@ -2,14 +2,10 @@
 
 ![NeterraProxy](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png)
 
-[What/Why/How](#what)
-
-[Instructions](#instructions)
-
-[Perfect Player Example & Settings](https://github.com/sgloutnikov/NeterraProxy#perfect-player-example--settings)
-
-[Video on Demand (Видеотека) [BG]](https://github.com/sgloutnikov/NeterraProxy#video-on-demand-%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D1%82%D0%B5%D0%BA%D0%B0)
-
+[What/Why/How](#what)<br>
+[Instructions](#instructions)<br>
+[Perfect Player Example & Settings](https://github.com/sgloutnikov/NeterraProxy#perfect-player-example--settings)<br>
+[Video on Demand (Видеотека) [BG]](https://github.com/sgloutnikov/NeterraProxy#video-on-demand-%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D1%82%D0%B5%D0%BA%D0%B0)<br>
 [Video on Demand (Видеотека) Perfect Player Example [BG]](https://github.com/sgloutnikov/NeterraProxy#video-on-demand-%D0%92%D0%B8%D0%B4%D0%B5%D0%BE%D1%82%D0%B5%D0%BA%D0%B0-perfect-player-example)
 
 ## What?
