@@ -45,7 +45,7 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 
 ---
 ## Video on Demand (Видеотека)
-Първо е нужно да маркирате избраните от вас предавания които да искате да гледате на запис като 'любими' на neterra.tv/videos. След това ще имате достъп до тях чрез http://localhost:8889/vod.m3u8 плейлист-а. Всяко предаване ще бъде в собствена категория. 
+Първо е нужно да маркирате избраните от вас предавания които да искате да гледате на запис като 'любими' на neterra.tv/videos. След това ще имате достъп до тях чрез http://localhost:8889/vod.m3u8 плейлист-а. Всяко предаване ще бъде в собствена група. 
 
 ---
 ## Perfect Player Video on Demand (Видеотека) Example
