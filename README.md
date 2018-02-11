@@ -2,7 +2,10 @@
 
 ![NeterraProxy](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png)
 
-[Intro](#what)
+[What/Why/How](#what)
+[Instructions](#instructions)
+[Perfect Player Example & Settings](#perfect-player-example-&-settings)
+[Video on Demand (Видеотека) [BG]](#video-on-demand-(видеотека))
 
 ## What?
 NeterraProxy is an on-demand m3u8 playlist/playback daemon for Neterra.tv, running on Android. (4.0+).
@@ -24,7 +27,7 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
     * EPG URL: http://localhost:8889/epg.xml
     * VOD Favorites: http://localhost:8889/vod.m3u8
 ---
-## Perfect Player Example + Settings
+## Perfect Player Example & Settings
 ![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp1.png)
 
 * Playlist:
