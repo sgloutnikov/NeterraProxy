@@ -44,6 +44,15 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 ---
 ## Video on Demand (Видеотека) Perfect Player Example
 
+* Отметката VOD е по ваш избор. Ако не е отметната, предаванията на запис се третират като нормални канали в собствени групи. Ако е отметната, е нужно да влезете в секция VOD за да стигнете до тях както е показано в следващите стъпки. 
+
+![VOD1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/vod1.png)
+
+![VOD2](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/vod2.png)
+
+![VOD3](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/vod3.png)
+
+![VOD4](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/vod4.png)
 
 ---
 ## Acknowledgments
