@@ -19,7 +19,7 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 
 ---
 ## Instructions
-1) Download the latest apk from the [releases](https://github.com/sgloutnikov/NeterraProxy/releases) section.
+1) Download the latest apk from the [releases](https://github.com/sgloutnikov/NeterraProxy/releases) section. You can use the following URL to more easily access and install the APK from a browser on your device: tinyurl.com/neterraproxy
 2) Install/Side Load and launch NeterraProxy on your Android device. 
 3) Enter your Neterra.tv **Username** and **Password** and press **Save**.
 4) Back out of NeterraProxy (or press Home) to leave it running. **Exit** will terminate NeterraProxy.
@@ -31,15 +31,15 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 ## Perfect Player Example & Settings
 ![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp1.png)
 
-* Playlist:
+* Settings > General > Playlist:
 
 ![PerfectPlayer2](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp2.png)
 
-* EPG:
+* Settings > General > EPG:
 
 ![PerfectPlayer3](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp3.png)
 
-* Decoder:
+* Settings > Playback > Decoder > HW+:
 
 ![PerfectPlayer4](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp4.png)
 
