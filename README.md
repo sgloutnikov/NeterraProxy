@@ -23,7 +23,8 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 2) Install/Side Load and launch NeterraProxy on your Android device. 
 3) Enter your Neterra.tv **Username** and **Password** and press **Save**.
 4) Back out of NeterraProxy (or press Home) to leave it running. **Exit** will terminate NeterraProxy.
-5) Use the following URL to connect NeterraProxy with your favorite IPTV player:
+5) Make sure HTML5 Player (not Flash) is selected in your account settings on http://neterra.tv.
+6) Use the following URL to connect NeterraProxy with your favorite IPTV player:
     * Playlist URL: http://localhost:8889/playlist.m3u8
     * EPG URL: http://localhost:8889/epg.xml
     * VOD Favorites: http://localhost:8889/vod.m3u8
