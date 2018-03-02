@@ -33,23 +33,6 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 ![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/ppdemo1.png)
 
 ---
-## Video on Demand (Видеотека)
-Първо е нужно да маркирате предаванията които да искате да гледате на запис като 'любими' на neterra.tv/videos. След това ще имате достъп до тях през http://localhost:8889/vod.m3u8 плейлист-а. Всяко предаване ще бъде в собствена група. 
-
----
-## Perfect Player Video on Demand (Видеотека) Example
-
-* Отметката VOD е по ваш избор. Ако не е отметната, предаванията на запис се третират като нормални канали в собствени групи. Ако е отметната, е нужно да влезете във VOD секцията за да ги гледате както е показано в следващите стъпки. 
-
-![VOD1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/vod1.png)
-
-![VOD2](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/vod2.png)
-
-![VOD3](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/vod3.png)
-
-![VOD4](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/vod4.png)
-
----
 ## Acknowledgments
 * SmoothProxy
 * KodiBG.org for providing the EPG source
