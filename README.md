@@ -23,7 +23,7 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
     * EPG URL: http://localhost:8889/epg.xml
     * VOD Favorites: http://localhost:8889/vod.m3u8
 ---
-More Instructions [BG]
+## More Instructions [BG]
 
 * [Wiki](https://github.com/sgloutnikov/NeterraProxy/wiki)
 ---
