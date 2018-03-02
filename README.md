@@ -29,20 +29,8 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
     * EPG URL: http://localhost:8889/epg.xml
     * VOD Favorites: http://localhost:8889/vod.m3u8
 ---
-## Perfect Player Example & Settings
+## Perfect Player Example
 ![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/ppdemo1.png)
-
-* Settings > General > Playlist:
-
-![PerfectPlayer2](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp2.png)
-
-* Settings > General > EPG:
-
-![PerfectPlayer3](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp3.png)
-
-* Settings > Playback > Decoder > HW+:
-
-![PerfectPlayer4](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp4.png)
 
 ---
 ## Video on Demand (Видеотека)
