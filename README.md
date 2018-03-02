@@ -30,7 +30,7 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
     * VOD Favorites: http://localhost:8889/vod.m3u8
 ---
 ## Perfect Player Example & Settings
-![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/pp1.png)
+![PerfectPlayer1](https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/screenshots/ppdemo1.png)
 
 * Settings > General > Playlist:
 
