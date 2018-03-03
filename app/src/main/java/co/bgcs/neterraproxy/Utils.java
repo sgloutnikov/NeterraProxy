@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import org.jsoup.Jsoup;
+import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -79,6 +80,8 @@ class Utils {
 
             for (VODSeriesItem item : series.getVodSeriesItemList()) {
                 String title = item.getTitle();
+                // Strip commas for playlist title entries
+                title = title.replaceAll(",", "");
                 String dataId = item.getDataId();
 
                 String encodedTitle = null;

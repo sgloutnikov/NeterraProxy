@@ -55,7 +55,8 @@ public class MainService extends Service implements Pipe {
                 .setContentTitle("NeterraProxy")
                 .setContentText(text)
                 .setOngoing(true)
-                .setPriority(2)
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setAutoCancel(true)
                 .build();
     }
 
