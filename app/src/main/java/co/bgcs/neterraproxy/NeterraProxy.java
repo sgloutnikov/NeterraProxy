@@ -151,6 +151,7 @@ class NeterraProxy extends NanoHTTPD {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //TODO: Append VOD playlist with isVod= parameter for each playlist
         return Utils.generatePlaylist(neterraContentHTMLString, channelsJson, host, port);
     }
 
