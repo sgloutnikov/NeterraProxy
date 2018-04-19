@@ -23,7 +23,7 @@ class Utils {
 
     static String getPlayLink(String jsonBody) {
         JsonObject channel = new JsonParser().parse(jsonBody).getAsJsonObject();
-        String playLink = channel.get("url").getAsJsonObject().get("play").getAsString();
+        String playLink = channel.get("link").getAsString();
         return playLink;
     }
 
