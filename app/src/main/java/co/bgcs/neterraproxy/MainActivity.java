@@ -1,36 +1,48 @@
 package co.bgcs.neterraproxy;
 
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.AppUpdaterUtils;
 import com.github.javiersantos.appupdater.DisableClickListener;
 import com.github.javiersantos.appupdater.enums.AppUpdaterError;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.github.javiersantos.appupdater.objects.Update;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private MainService mainService;
+    private AppUpdaterUtils appUpdater;
     private boolean isBound;
     private EditText usernameEditText;
     private EditText passwordEditText;
+    private ProgressDialog mProgressDialog;
 
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
@@ -83,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText.setText(sharedPreferences.getString("password", null));
 
         final Context context = this;
-        AppUpdaterUtils appUpdater = new AppUpdaterUtils(this)
+        appUpdater = new AppUpdaterUtils(context)
                 .setUpdateFrom(UpdateFrom.JSON)
                 .setUpdateJSON("https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/app/update-changelog.json")
                 .withListener(new AppUpdaterUtils.UpdateListener() {
@@ -96,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
                                     .setPositiveButton("Свали сега", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            System.out.println(update.getUrlToDownload());
-                                            //TODO: Download new apk with progress bar
+                                            URL url = update.getUrlToDownload();
+                                            new DownloadNewVersion(context).execute(url);
                                         }
                                     })
                                     .setNegativeButton("Затвори", null)
@@ -119,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        appUpdater.stop();
         if (isBound) {
             unbindService(mConnection);
             isBound = false;
@@ -150,19 +163,79 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Preferences saved.", Toast.LENGTH_SHORT).show();
     }
 
-    private class OnUpdateClickListener implements DialogInterface.OnClickListener {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            Log.d("OnUpdateClickListener", "onClick Fired");
+    private class DownloadNewVersion extends AsyncTask<URL, Integer, Boolean> {
+        Context context;
 
+
+        public DownloadNewVersion(Context context) {
+            this.context = context;
         }
-    }
-
-    private class NewVersionDownloader extends AsyncTask<String, Integer, Boolean> {
 
         @Override
-        protected Boolean doInBackground(String... strings) {
-            return null;
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = new ProgressDialog(context);
+            mProgressDialog.setMessage("Downloading...");
+            mProgressDialog.setMax(100);
+            mProgressDialog.setCanceledOnTouchOutside(false);
+            mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Boolean doInBackground(URL... urls) {
+            OkHttpClient client = new OkHttpClient.Builder().build();
+            Request request = new Request.Builder().url(urls[0]).build();
+            try {
+                Response response = client.newCall(request).execute();
+                File file = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
+                        + "/neterraproxy-update.apk");
+                file.mkdirs();
+                if (file.exists()) {
+                    file.delete();
+                }
+
+                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                InputStream inputStream = response.body().byteStream();
+                long fileSize = Long.parseLong(response.header("Content-Length"));
+
+                byte[] data = new byte[512];
+                long total = 0;
+                int count;
+                while ((count = inputStream.read(data)) != -1) {
+                    total += count;
+                    // Publish download progress
+                    publishProgress((int) (total * 100 / fileSize));
+                    fileOutputStream.write(data, 0, count);
+                }
+
+                fileOutputStream.flush();
+                fileOutputStream.close();
+                inputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+            mProgressDialog.dismiss();
+            // Will not work on Android 24+. Look to update to use modern methods...
+            File updateApk = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
+                    + "/neterraproxy-update.apk");
+            Intent updateIntent = new Intent(Intent.ACTION_VIEW);
+            updateIntent.setDataAndType(Uri.fromFile(updateApk), "application/vnd.android.package-archive");
+            context.startActivity(updateIntent);
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate(progress);
+            // Update the progress dialog
+            mProgressDialog.setProgress(progress[0]);
         }
     }
 
