@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
+
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
@@ -70,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
         bindService(new Intent(this, MainService.class), mConnection, BIND_AUTO_CREATE);
         usernameEditText.setText(sharedPreferences.getString("username", null));
         passwordEditText.setText(sharedPreferences.getString("password", null));
+
+        AppUpdater appUpdater = new AppUpdater(this)
+                .setUpdateFrom(UpdateFrom.JSON)
+                .setUpdateJSON("https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/app/update-changelog.json")
+                .setTitleOnUpdateAvailable("Update Available...")
+                .showAppUpdated(true);
+        appUpdater.start();
     }
 
     @Override
