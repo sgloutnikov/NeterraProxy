@@ -2,19 +2,27 @@ package co.bgcs.neterraproxy;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.AppUpdaterUtils;
+import com.github.javiersantos.appupdater.DisableClickListener;
+import com.github.javiersantos.appupdater.enums.AppUpdaterError;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
+import com.github.javiersantos.appupdater.objects.Update;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -74,14 +82,37 @@ public class MainActivity extends AppCompatActivity {
         usernameEditText.setText(sharedPreferences.getString("username", null));
         passwordEditText.setText(sharedPreferences.getString("password", null));
 
-        AppUpdater appUpdater = new AppUpdater(this)
+        final Context context = this;
+        AppUpdaterUtils appUpdater = new AppUpdaterUtils(this)
                 .setUpdateFrom(UpdateFrom.JSON)
                 .setUpdateJSON("https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/app/update-changelog.json")
-                .setTitleOnUpdateAvailable("Има Нова Версия")
-                .setTitleOnUpdateNotAvailable("Няма Нова Версия")
-                .setButtonUpdate("Свали сега")
-                .setButtonDismiss("Затвори")
-                .setButtonDoNotShowAgain("Не показвай отново");
+                .withListener(new AppUpdaterUtils.UpdateListener() {
+                    @Override
+                    public void onSuccess(final Update update, Boolean isUpdateAvailable) {
+                        if(isUpdateAvailable) {
+                            AlertDialog dlg = new AlertDialog.Builder(context)
+                                    .setTitle("Нова Версия: " + update.getLatestVersion())
+                                    .setMessage(update.getReleaseNotes())
+                                    .setPositiveButton("Свали сега", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            System.out.println(update.getUrlToDownload());
+                                            //TODO: Download new apk with progress bar
+                                        }
+                                    })
+                                    .setNegativeButton("Затвори", null)
+                                    .setNeutralButton("Не показвай отново", new DisableClickListener(context))
+                                    .create();
+                            dlg.setCancelable(true);
+                            dlg.show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(AppUpdaterError appUpdaterError) {
+
+                    }
+                });
         appUpdater.start();
     }
 
@@ -118,4 +149,21 @@ public class MainActivity extends AppCompatActivity {
         }
         Toast.makeText(getApplicationContext(), "Preferences saved.", Toast.LENGTH_SHORT).show();
     }
+
+    private class OnUpdateClickListener implements DialogInterface.OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            Log.d("OnUpdateClickListener", "onClick Fired");
+
+        }
+    }
+
+    private class NewVersionDownloader extends AsyncTask<String, Integer, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            return null;
+        }
+    }
+
 }
