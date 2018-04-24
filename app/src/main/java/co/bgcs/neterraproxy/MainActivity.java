@@ -77,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
         AppUpdater appUpdater = new AppUpdater(this)
                 .setUpdateFrom(UpdateFrom.JSON)
                 .setUpdateJSON("https://raw.githubusercontent.com/sgloutnikov/NeterraProxy/master/app/update-changelog.json")
-                .setTitleOnUpdateAvailable("Update Available...")
-                .showAppUpdated(true);
+                .setTitleOnUpdateAvailable("Има Нова Версия")
+                .setTitleOnUpdateNotAvailable("Няма Нова Версия")
+                .setButtonUpdate("Свали сега")
+                .setButtonDismiss("Затвори")
+                .setButtonDoNotShowAgain("Не показвай отново");
         appUpdater.start();
     }
 

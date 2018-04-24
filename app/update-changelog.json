@@ -1,9 +1,8 @@
 {
-  "latestVersion": "1.4.4",
-  "latestVersionCode": 15,
-  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.4.4/neterraproxy-1.4.4.apk",
+  "latestVersion": "1.5.0",
+  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.5.0/neterraproxy-1.5.0.apk",
   "releaseNotes": [
-    "- Testing updates",
-    "- Bla bla bla"
+    "Промени:",
+    "- Известяване за нова версия"
   ]
 }
