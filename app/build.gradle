@@ -21,15 +21,16 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestApi('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     api 'com.android.support:appcompat-v7:25.+'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
-    testApi 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     api 'org.nanohttpd:nanohttpd:2.3.1'
     api 'com.squareup.okhttp3:okhttp:3.9.0'
     api 'com.google.code.gson:gson:2.8.2'
     api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     api 'org.jsoup:jsoup:1.11.2'
+    //api 'com.github.javiersantos:AppUpdater:2.6.5'
 }
