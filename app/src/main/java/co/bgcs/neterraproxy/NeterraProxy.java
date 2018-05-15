@@ -66,7 +66,7 @@ class NeterraProxy extends NanoHTTPD {
         if (uri.equals("/epg.xml")) {
             pipe.setNotification("Now serving: EPG");
             res = newFixedLengthResponse(Response.Status.REDIRECT, "application/xml", null);
-            res.addHeader("Location", "https://epg.kodibg.org/dl.php");
+            res.addHeader("Location", "http://epg.kodibg.org/dl.php");
         } else if (uri.startsWith("/playlist.m3u8")) {
             List<String> ch = session.getParameters().get("ch");
             List<String> chName = session.getParameters().get("name");

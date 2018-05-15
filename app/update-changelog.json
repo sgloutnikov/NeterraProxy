@@ -1,9 +1,8 @@
 {
-  "latestVersion": "1.5.1",
-  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.5.1/neterraproxy-1.5.1.apk",
+  "latestVersion": "1.5.2",
+  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.5.2/neterraproxy-1.5.2.apk",
   "releaseNotes": [
-    "Задължителен ъпдейт поради промени в Нетера.",
     "Промени:",
-    "- SSL вече работи."
+    "- Оправен е достъпа до ТВ справочника"
   ]
 }
