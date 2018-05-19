@@ -6,9 +6,11 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiManager;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.text.format.Formatter;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -18,11 +20,17 @@ import java.io.InputStream;
 
 
 public class MainService extends Service implements Pipe {
-    private final NeterraProxy proxy = new NeterraProxy("127.0.0.1", 8889, this);
+    private NeterraProxy proxy;
     private final IBinder binder = new LocalBinder();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        // LocalIP Bind Testing
+        WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        String localIp = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        proxy = new NeterraProxy(localIp, 8889, this);
+        System.out.println("Binding to: " + localIp);
+
         try {
             proxy.start();
             startForeground(1, getNotification("Ready to serve."));
@@ -30,6 +38,7 @@ public class MainService extends Service implements Pipe {
             e.printStackTrace();
             stopSelf();
         }
+        setNotification("Binding to: " + localIp);
         return START_STICKY;
     }
 
