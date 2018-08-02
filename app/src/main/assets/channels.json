@@ -460,5 +460,40 @@
     "tvg-name": "EuroFolk",
     "group": "Музикални",
     "logo": "http://logos.kodibg.org/eurofolktv.png"
+  },
+  "100519": {
+    "name": "Первый канал России",
+    "tvg-id": "",
+    "tvg-name": "",
+    "group": "Руски",
+    "logo": "https://assets.neterra.tv/media/ort.png"
+  },
+  "100520": {
+    "name": "Наше кино",
+    "tvg-id": "",
+    "tvg-name": "",
+    "group": "Руски",
+    "logo": "https://assets.neterra.tv/media/nkino.png"
+  },
+  "100521": {
+    "name": "24 Techno",
+    "tvg-id": "",
+    "tvg-name": "",
+    "group": "Руски",
+    "logo": "https://assets.neterra.tv/media/techno24.png"
+  },
+  "100542": {
+    "name": "English Club",
+    "tvg-id": "EnglishClubTV",
+    "tvg-name": "EnglishClubTV",
+    "group": "Филмови",
+    "logo": "http://logos.kodibg.org/englishclubtv.png"
+  },
+  "100543": {
+    "name": "The World",
+    "tvg-id": "TheWorld",
+    "tvg-name": "TheWorld",
+    "group": "Документални",
+    "logo": "http://logos.kodibg.org/theworld.png"
   }
 }
