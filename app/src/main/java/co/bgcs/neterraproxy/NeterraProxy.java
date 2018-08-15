@@ -125,7 +125,7 @@ class NeterraProxy extends NanoHTTPD {
     private String getVODStream(String tag, String dataId) {
         checkAuthentication();
         String playLinkJson = "";
-        String playUrl = "https://www.neterra.tv/videos/" + tag + "/play/" + dataId + "?quality=25";
+        String playUrl = "https://www.neterra.tv/videos/" + tag + "/play/" + dataId;
 
         Request request = new Request.Builder()
                 .url(playUrl)
@@ -151,7 +151,6 @@ class NeterraProxy extends NanoHTTPD {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //TODO: Append VOD playlist with isVod= parameter for each playlist
         return Utils.generatePlaylist(neterraContentHTMLString, channelsJson, host, port);
     }
 
