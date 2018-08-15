@@ -1,10 +1,8 @@
 {
-  "latestVersion": "1.5.3",
-  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.5.3/neterraproxy-1.5.3.apk",
+  "latestVersion": "1.5.4",
+  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.5.4/neterraproxy-1.5.4.apk",
   "releaseNotes": [
     "Промени:",
-    "- Добавени са 3 Руски канала и нова категория 'Руски'",
-    "- Добавен е канала The World в 'Документални'",
-    "- Добавен е канала English Club във 'Филмови'"
+    "- Предаванията на запис от 'Видеотека' отново работят."
   ]
 }
