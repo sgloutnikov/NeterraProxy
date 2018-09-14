@@ -1,8 +1,9 @@
 {
-  "latestVersion": "1.5.4",
-  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.5.4/neterraproxy-1.5.4.apk",
+  "latestVersion": "1.5.5",
+  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.5.5/neterraproxy-1.5.5.apk",
   "releaseNotes": [
     "Промени:",
-    "- Предаванията на запис от 'Видеотека' отново работят."
+    "- Оправено е обновяването на Видеотека плейлиста.",
+    "- Нови имена и логота за БНТ каналите."
   ]
 }
