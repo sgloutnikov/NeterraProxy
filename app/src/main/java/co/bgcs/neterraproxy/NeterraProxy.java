@@ -107,7 +107,7 @@ class NeterraProxy extends NanoHTTPD {
     private String getStream(String chanId) {
         checkAuthentication();
         String playLinkJson = "";
-        String playUrl = "https://www.neterra.tv/live/play/" + chanId + "?quality=25";
+        String playUrl = "https://neterra.tv/live/play/" + chanId + "?quality=25";
 
         Request request = new Request.Builder()
                 .url(playUrl)
@@ -125,7 +125,7 @@ class NeterraProxy extends NanoHTTPD {
     private String getVODStream(String tag, String dataId) {
         checkAuthentication();
         String playLinkJson = "";
-        String playUrl = "https://www.neterra.tv/videos/" + tag + "/play/" + dataId;
+        String playUrl = "https://neterra.tv/videos/" + tag + "/play/" + dataId;
 
         Request request = new Request.Builder()
                 .url(playUrl)
@@ -143,7 +143,7 @@ class NeterraProxy extends NanoHTTPD {
     private String getM3U8() {
         String neterraContentHTMLString = "";
         Request request = new Request.Builder()
-                .url("https://www.neterra.tv/live")
+                .url("https://neterra.tv/live")
                 .build();
         try {
             okhttp3.Response response = client.newCall(request).execute();
@@ -158,7 +158,7 @@ class NeterraProxy extends NanoHTTPD {
         String vodJSONString = "";
         Request request = new Request.Builder()
                 // Only favorites for now, maybe grow list to all later
-                .url("https://www.neterra.tv/videos/categories/favorites")
+                .url("https://neterra.tv/videos/categories/favorites")
                 .build();
         try {
             okhttp3.Response response = client.newCall(request).execute();
@@ -173,7 +173,7 @@ class NeterraProxy extends NanoHTTPD {
             String vodItemsHTML = "";
             // Get all items per series
             request = new Request.Builder()
-                    .url("https://www.neterra.tv/videos/" + tag)
+                    .url("https://neterra.tv/videos/" + tag)
                     .build();
             try {
                 okhttp3.Response response = client.newCall(request).execute();
@@ -186,7 +186,7 @@ class NeterraProxy extends NanoHTTPD {
                     .select("li");
             for (Element item : itemPlaylistElements) {
                 Element urlElement = item.selectFirst("a[href]");
-                String title = urlElement.selectFirst("p").text();
+                String title = urlElement.select("span.playlist-item__title").text();
                 String dataId = urlElement.attr("data-id").toString();
                 VODSeriesItem vodSeriesItem = new VODSeriesItem(title, dataId);
                 series.getVodSeriesItemList().add(vodSeriesItem);
@@ -212,7 +212,7 @@ class NeterraProxy extends NanoHTTPD {
 
         // Get CSRF Token
         Request getRequest = new Request.Builder()
-                .url("https://www.neterra.tv/sign-in")
+                .url("https://neterra.tv/sign-in")
                 .build();
         try {
             okhttp3.Response response = client.newCall(getRequest).execute();
@@ -230,7 +230,7 @@ class NeterraProxy extends NanoHTTPD {
                 .add("password", password)
                 .build();
         Request request = new Request.Builder()
-                .url("https://www.neterra.tv/sign-in")
+                .url("https://neterra.tv/sign-in")
                 .post(formBody)
                 .build();
         try {
