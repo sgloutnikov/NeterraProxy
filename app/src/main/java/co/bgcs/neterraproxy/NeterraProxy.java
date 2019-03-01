@@ -83,8 +83,10 @@ class NeterraProxy extends NanoHTTPD {
             } else {
                 pipe.setNotification("Now serving: " + chName.get(0));
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
-                res.addHeader("Location", getStream(ch.get(0)));
+                res.addHeader("Location", getLiveStream(ch.get(0)));
             }
+        } else if (uri.startsWith("/timeshift.m3u8")) {
+            // TODO: Timeshift playlist
         } else if (uri.startsWith("/vod.m3u8")) {
             List<String> dataId = session.getParameters().get("id");
             List<String> tag = session.getParameters().get("tag");
@@ -104,7 +106,7 @@ class NeterraProxy extends NanoHTTPD {
         return res;
     }
 
-    private String getStream(String chanId) {
+    private String getLiveStream(String chanId) {
         checkAuthentication();
         String playLinkJson = "";
         String playUrl = "https://neterra.tv/live/play/" + chanId + "?quality=25";
