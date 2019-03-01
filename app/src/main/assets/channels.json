@@ -3,35 +3,35 @@
     "name": "БНТ 1",
     "tvg-id": "BNT1",
     "tvg-name": "BNT1",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/bnt1.png"
   },
   "100361": {
     "name": "БНТ 3",
-    "tvg-id": "BNTHD",
-    "tvg-name": "BNTHD",
-    "group": "Политематични",
+    "tvg-id": "BNT3",
+    "tvg-name": "BNT3",
+    "group": "Спортни",
     "logo": "http://logos.kodibg.org/bnt3.png"
   },
   "100227": {
     "name": "БНТ 2",
     "tvg-id": "BNT2",
     "tvg-name": "BNT2",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/bnt2.png"
   },
   "100169": {
     "name": "BNT 4",
-    "tvg-id": "BNTWorld",
-    "tvg-name": "BNTWorld",
-    "group": "Политематични",
+    "tvg-id": "BNT4",
+    "tvg-name": "BNT4",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/bnt4.png"
   },
   "100183": {
     "name": "Нова ТВ",
     "tvg-id": "Nova",
     "tvg-name": "Nova",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/novatv.png"
   },
   "100191": {
@@ -66,7 +66,7 @@
     "name": "bTV",
     "tvg-id": "bTV",
     "tvg-name": "bTV",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/btv.png"
   },
   "100147": {
@@ -108,7 +108,7 @@
     "name": "BiT",
     "tvg-id": "BiT",
     "tvg-name": "BiT",
-    "group": "Политематични",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/bit.png"
   },
   "100355": {
@@ -206,35 +206,35 @@
     "name": "24kitchen",
     "tvg-id": "24kitchen",
     "tvg-name": "24kitchen",
-    "group": "Документални",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/24kitchen.png"
   },
   "100177": {
     "name": "ТВ Европа",
     "tvg-id": "tveurope",
     "tvg-name": "tveurope",
-    "group": "Новинарски",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/tveuropa.png"
   },
   "100157": {
     "name": "Bulgaria On Air",
     "tvg-id": "BulgariaOnAir",
     "tvg-name": "BulgariaOnAir",
-    "group": "Политематични",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/bgonair.png"
   },
   "100181": {
     "name": "Канал 3",
     "tvg-id": "Kanal3",
     "tvg-name": "Kanal3",
-    "group": "Спортни",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/kanal3.png"
   },
   "100199": {
     "name": "Skat",
     "tvg-id": "Skat",
     "tvg-name": "Skat",
-    "group": "Политематични",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/skat.png"
   },
   "100193": {
@@ -353,42 +353,42 @@
     "name": "Евроком",
     "tvg-id": "Eurocom",
     "tvg-name": "Eurocom",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/evrokom.png"
   },
   "100372": {
     "name": "ТВ Варна",
     "tvg-id": "",
     "tvg-name": "",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": ""
   },
   "100265": {
     "name": "Военен ТВ Канал",
     "tvg-id": "VTK",
     "tvg-name": "VTK",
-    "group": "Политематични",
+    "group": "Филмови",
     "logo": "http://logos.kodibg.org/vtk.png"
   },
   "100303": {
     "name": "БНП ТВ",
     "tvg-id": "",
     "tvg-name": "",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/bnptv.png"
   },
   "100211": {
     "name": "ТВ Черно Море",
     "tvg-id": "ChernoMore",
     "tvg-name": "ChernoMore",
-    "group": "Политематични",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/chernomore.png"
   },
   "100197": {
     "name": "ПОТВ",
     "tvg-id": "Trakiq",
     "tvg-name": "Trakiq",
-    "group": "Новинарски",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/potv.png"
   },
   "100374": {
@@ -409,21 +409,21 @@
     "name": "TV1",
     "tvg-id": "TV1",
     "tvg-name": "TV1",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/tv1.png"
   },
   "100364": {
     "name": "България 24",
     "tvg-id": "news",
     "tvg-name": "news",
-    "group": "Новинарски",
+    "group": "Информационни",
     "logo": "http://logos.kodibg.org/bulgaria24.png"
   },
   "100173": {
     "name": "Вест ТВ",
     "tvg-id": "VTV",
     "tvg-name": "VTV",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/vtv.png"
   },
   "100373": {
@@ -437,7 +437,7 @@
     "name": "bTV HD",
     "tvg-id": "bTV",
     "tvg-name": "bTV",
-    "group": "Политематични",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/btv.png"
   },
   "100390": {
@@ -495,5 +495,61 @@
     "tvg-name": "TheWorld",
     "group": "Документални",
     "logo": "http://logos.kodibg.org/theworld.png"
+  },
+  "100809": {
+    "name": "B1B Action",
+    "tvg-id": "B1BActionTV",
+    "tvg-name": "B1BActionTV",
+    "group": "Спортни",
+    "logo": "http://logos.kodibg.org/b1b.png"
+  },
+  "100803": {
+    "name": "CNN",
+    "tvg-id": "CNN",
+    "tvg-name": "CNN",
+    "group": "Информационни",
+    "logo": "http://logos.kodibg.org/cnn.png"
+  },
+  "100804": {
+    "name": "BBC",
+    "tvg-id": "BBC1",
+    "tvg-name": "BBC1",
+    "group": "Информационни",
+    "logo": "https://assets.neterra.tv/media/bbc.png"
+  },
+  "1648": {
+    "name": "Дартс ТВ",
+    "tvg-id": "TVDarts",
+    "tvg-name": "TVDarts",
+    "group": "Информационни",
+    "logo": "http://logos.kodibg.org/bbcone.png"
+  },
+  "100798": {
+    "name": "БСТВ",
+    "tvg-id": "BSTV",
+    "tvg-name": "BSTV",
+    "group": "Информационни",
+    "logo": "http://logos.kodibg.org/bstv.png"
+  },
+  "100641": {
+    "name": "БНР",
+    "tvg-id": "BNRHorizont",
+    "tvg-name": "BNRHorizont",
+    "group": "Радио",
+    "logo": "http://logos.kodibg.org/bnrhorizont.png"
+  },
+  "100675": {
+    "name": "УЛТРА",
+    "tvg-id": "",
+    "tvg-name": "",
+    "group": "Радио",
+    "logo": "https://assets.neterra.tv/media/ultra.png"
+  },
+  "100676": {
+    "name": "Вега+",
+    "tvg-id": "",
+    "tvg-name": "",
+    "group": "Радио",
+    "logo": "https://assets.neterra.tv/media/vega.png"
   }
 }
