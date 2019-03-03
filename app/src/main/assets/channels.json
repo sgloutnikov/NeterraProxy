@@ -5,15 +5,7 @@
     "tvg-name": "BNT1",
     "group": "Обществени",
     "logo": "http://logos.kodibg.org/bnt1.png",
-    "dvr": false
-  },
-  "100361": {
-    "name": "БНТ 3",
-    "tvg-id": "BNT3",
-    "tvg-name": "BNT3",
-    "group": "Спортни",
-    "logo": "http://logos.kodibg.org/bnt3.png",
-    "dvr": false
+    "dvr": true
   },
   "100227": {
     "name": "БНТ 2",
@@ -21,7 +13,7 @@
     "tvg-name": "BNT2",
     "group": "Обществени",
     "logo": "http://logos.kodibg.org/bnt2.png",
-    "dvr": false
+    "dvr": true
   },
   "100169": {
     "name": "BNT 4",
@@ -29,7 +21,7 @@
     "tvg-name": "BNT4",
     "group": "Обществени",
     "logo": "http://logos.kodibg.org/bnt4.png",
-    "dvr": false
+    "dvr": true
   },
   "100183": {
     "name": "Нова ТВ",
@@ -37,39 +29,7 @@
     "tvg-name": "Nova",
     "group": "Обществени",
     "logo": "http://logos.kodibg.org/novatv.png",
-    "dvr": false
-  },
-  "100191": {
-    "name": "Нова Спорт",
-    "tvg-id": "NovaSport",
-    "tvg-name": "NovaSport",
-    "group": "Спортни",
-    "logo": "http://logos.kodibg.org/novasport.png",
-    "dvr": false
-  },
-  "100189": {
-    "name": "Кино Нова",
-    "tvg-id": "KinoNova",
-    "tvg-name": "KinoNova",
-    "group": "Филмови",
-    "logo": "http://logos.kodibg.org/kinonova.png",
-    "dvr": false
-  },
-  "100185": {
-    "name": "Диема",
-    "tvg-id": "Diema",
-    "tvg-name": "Diema",
-    "group": "Филмови",
-    "logo": "http://logos.kodibg.org/diema.png",
-    "dvr": false
-  },
-  "100187": {
-    "name": "Диема Family",
-    "tvg-id": "DiemaFamily",
-    "tvg-name": "DiemaFamily",
-    "group": "Филмови",
-    "logo": "http://logos.kodibg.org/diemafamily.png",
-    "dvr": false
+    "dvr": true
   },
   "100143": {
     "name": "bTV",
@@ -77,7 +37,47 @@
     "tvg-name": "bTV",
     "group": "Обществени",
     "logo": "http://logos.kodibg.org/btv.png",
-    "dvr": false
+    "dvr": true
+  },
+  "100389": {
+    "name": "bTV HD",
+    "tvg-id": "bTV",
+    "tvg-name": "bTV",
+    "group": "Обществени",
+    "logo": "http://logos.kodibg.org/btv.png",
+    "dvr": true
+  },
+  "100175": {
+    "name": "Евроком",
+    "tvg-id": "Eurocom",
+    "tvg-name": "Eurocom",
+    "group": "Обществени",
+    "logo": "http://logos.kodibg.org/evrokom.png",
+    "dvr": true
+  },
+  "100189": {
+    "name": "Кино Нова",
+    "tvg-id": "KinoNova",
+    "tvg-name": "KinoNova",
+    "group": "Филмови",
+    "logo": "http://logos.kodibg.org/kinonova.png",
+    "dvr": true
+  },
+  "100185": {
+    "name": "Диема",
+    "tvg-id": "Diema",
+    "tvg-name": "Diema",
+    "group": "Филмови",
+    "logo": "http://logos.kodibg.org/diema.png",
+    "dvr": true
+  },
+  "100187": {
+    "name": "Диема Family",
+    "tvg-id": "DiemaFamily",
+    "tvg-name": "DiemaFamily",
+    "group": "Филмови",
+    "logo": "http://logos.kodibg.org/diemafamily.png",
+    "dvr": true
   },
   "100147": {
     "name": "bTV Action",
@@ -85,23 +85,15 @@
     "tvg-name": "bTVAction",
     "group": "Филмови",
     "logo": "http://logos.kodibg.org/btvaction.png",
-    "dvr": false
+    "dvr": true
   },
-  "100213": {
-    "name": "Ring BG",
-    "tvg-id": "RING",
-    "tvg-name": "RING",
-    "group": "Спортни",
-    "logo": "http://logos.kodibg.org/ring.png",
-    "dvr": false
-  },
-  "100149": {
-    "name": "bTV Cinema",
-    "tvg-id": "bTVCinema",
-    "tvg-name": "bTVCinema",
+  "100390": {
+    "name": "bTV Action HD",
+    "tvg-id": "bTVAction",
+    "tvg-name": "bTVAction",
     "group": "Филмови",
-    "logo": "http://logos.kodibg.org/btvcinema.png",
-    "dvr": false
+    "logo": "http://logos.kodibg.org/btvaction.png",
+    "dvr": true
   },
   "100145": {
     "name": "bTV Comedy",
@@ -109,7 +101,15 @@
     "tvg-name": "bTVComedy",
     "group": "Филмови",
     "logo": "http://logos.kodibg.org/btvcomedy.png",
-    "dvr": false
+    "dvr": true
+  },
+  "100149": {
+    "name": "bTV Cinema",
+    "tvg-id": "bTVCinema",
+    "tvg-name": "bTVCinema",
+    "group": "Филмови",
+    "logo": "http://logos.kodibg.org/btvcinema.png",
+    "dvr": true
   },
   "100281": {
     "name": "bTV Lady",
@@ -117,7 +117,103 @@
     "tvg-name": "bTVLady",
     "group": "Филмови",
     "logo": "http://logos.kodibg.org/btvlady.png",
-    "dvr": false
+    "dvr": true
+  },
+  "100543": {
+    "name": "The World",
+    "tvg-id": "TheWorld",
+    "tvg-name": "TheWorld",
+    "group": "Документални",
+    "logo": "http://logos.kodibg.org/theworld.png",
+    "dvr": true
+  },
+  "100385": {
+    "name": "National Geographic Channel",
+    "tvg-id": "NatGeo",
+    "tvg-name": "NatGeo",
+    "group": "Документални",
+    "logo": "http://logos.kodibg.org/natgeo.png",
+    "dvr": true
+  },
+  "100386": {
+    "name": "National Geographic Wild",
+    "tvg-id": "NatGeoWild",
+    "tvg-name": "NatGeoWild",
+    "group": "Документални",
+    "logo": "http://logos.kodibg.org/natgeowild.png",
+    "dvr": true
+  },
+  "100361": {
+    "name": "БНТ 3",
+    "tvg-id": "BNT3",
+    "tvg-name": "BNT3",
+    "group": "Спортни",
+    "logo": "http://logos.kodibg.org/bnt3.png",
+    "dvr": true
+  },
+  "100809": {
+    "name": "B1B Action",
+    "tvg-id": "B1BActionTV",
+    "tvg-name": "B1BActionTV",
+    "group": "Спортни",
+    "logo": "http://logos.kodibg.org/b1b.png",
+    "dvr": true
+  },
+  "100191": {
+    "name": "Нова Спорт",
+    "tvg-id": "NovaSport",
+    "tvg-name": "NovaSport",
+    "group": "Спортни",
+    "logo": "http://logos.kodibg.org/novasport.png",
+    "dvr": true
+  },
+  "100213": {
+    "name": "Ring BG",
+    "tvg-id": "RING",
+    "tvg-name": "RING",
+    "group": "Спортни",
+    "logo": "http://logos.kodibg.org/ring.png",
+    "dvr": true
+  },
+  "100177": {
+    "name": "ТВ Европа",
+    "tvg-id": "tveurope",
+    "tvg-name": "tveurope",
+    "group": "Информационни",
+    "logo": "http://logos.kodibg.org/tveuropa.png",
+    "dvr": true
+  },
+  "100181": {
+    "name": "Канал 3",
+    "tvg-id": "Kanal3",
+    "tvg-name": "Kanal3",
+    "group": "Информационни",
+    "logo": "http://logos.kodibg.org/kanal3.png",
+    "dvr": true
+  },
+  "100199": {
+    "name": "Skat",
+    "tvg-id": "Skat",
+    "tvg-name": "Skat",
+    "group": "Информационни",
+    "logo": "http://logos.kodibg.org/skat.png",
+    "dvr": true
+  },
+  "100353": {
+    "name": "Nickelodeon",
+    "tvg-id": "Nickelodeon",
+    "tvg-name": "Nickelodeon",
+    "group": "Детски",
+    "logo": "http://logos.kodibg.org/nickelodeon.png",
+    "dvr": true
+  },
+  "100351": {
+    "name": "Nickelodeon Junior",
+    "tvg-id": "NickJr",
+    "tvg-name": "NickJr",
+    "group": "Детски",
+    "logo": "http://logos.kodibg.org/nickjr.png",
+    "dvr": true
   },
   "100378": {
     "name": "BiT",
@@ -149,22 +245,6 @@
     "tvg-name": "AXNWhite",
     "group": "Филмови",
     "logo": "http://logos.kodibg.org/axnwhite.png",
-    "dvr": false
-  },
-  "100353": {
-    "name": "Nickelodeon",
-    "tvg-id": "Nickelodeon",
-    "tvg-name": "Nickelodeon",
-    "group": "Детски",
-    "logo": "http://logos.kodibg.org/nickelodeon.png",
-    "dvr": false
-  },
-  "100351": {
-    "name": "Nickelodeon Junior",
-    "tvg-id": "NickJr",
-    "tvg-name": "NickJr",
-    "group": "Детски",
-    "logo": "http://logos.kodibg.org/nickjr.png",
     "dvr": false
   },
   "100327": {
@@ -216,22 +296,6 @@
     "dvr": false
 
   },
-  "100385": {
-    "name": "National Geographic Channel",
-    "tvg-id": "NatGeo",
-    "tvg-name": "NatGeo",
-    "group": "Документални",
-    "logo": "http://logos.kodibg.org/natgeo.png",
-    "dvr": false
-  },
-  "100386": {
-    "name": "National Geographic Wild",
-    "tvg-id": "NatGeoWild",
-    "tvg-name": "NatGeoWild",
-    "group": "Документални",
-    "logo": "http://logos.kodibg.org/natgeowild.png",
-    "dvr": false
-  },
   "100387": {
     "name": "24kitchen",
     "tvg-id": "24kitchen",
@@ -240,36 +304,12 @@
     "logo": "http://logos.kodibg.org/24kitchen.png",
     "dvr": false
   },
-  "100177": {
-    "name": "ТВ Европа",
-    "tvg-id": "tveurope",
-    "tvg-name": "tveurope",
-    "group": "Информационни",
-    "logo": "http://logos.kodibg.org/tveuropa.png",
-    "dvr": false
-  },
   "100157": {
     "name": "Bulgaria On Air",
     "tvg-id": "BulgariaOnAir",
     "tvg-name": "BulgariaOnAir",
     "group": "Информационни",
     "logo": "http://logos.kodibg.org/bgonair.png",
-    "dvr": false
-  },
-  "100181": {
-    "name": "Канал 3",
-    "tvg-id": "Kanal3",
-    "tvg-name": "Kanal3",
-    "group": "Информационни",
-    "logo": "http://logos.kodibg.org/kanal3.png",
-    "dvr": false
-  },
-  "100199": {
-    "name": "Skat",
-    "tvg-id": "Skat",
-    "tvg-name": "Skat",
-    "group": "Информационни",
-    "logo": "http://logos.kodibg.org/skat.png",
     "dvr": false
   },
   "100193": {
@@ -400,14 +440,6 @@
     "logo": "http://logos.kodibg.org/travelhd.png",
     "dvr": false
   },
-  "100175": {
-    "name": "Евроком",
-    "tvg-id": "Eurocom",
-    "tvg-name": "Eurocom",
-    "group": "Обществени",
-    "logo": "http://logos.kodibg.org/evrokom.png",
-    "dvr": false
-  },
   "100372": {
     "name": "ТВ Варна",
     "tvg-id": "",
@@ -496,22 +528,6 @@
     "logo": "https://assets.neterra.tv/media/romatv.png",
     "dvr": false
   },
-  "100389": {
-    "name": "bTV HD",
-    "tvg-id": "bTV",
-    "tvg-name": "bTV",
-    "group": "Обществени",
-    "logo": "http://logos.kodibg.org/btv.png",
-    "dvr": false
-  },
-  "100390": {
-    "name": "bTV Action HD",
-    "tvg-id": "bTVAction",
-    "tvg-name": "bTVAction",
-    "group": "Филмови",
-    "logo": "http://logos.kodibg.org/btvaction.png",
-    "dvr": false
-  },
   "100414": {
     "name": "MMTV",
     "tvg-id": "MMTV",
@@ -558,22 +574,6 @@
     "tvg-name": "EnglishClubTV",
     "group": "Филмови",
     "logo": "http://logos.kodibg.org/englishclubtv.png",
-    "dvr": false
-  },
-  "100543": {
-    "name": "The World",
-    "tvg-id": "TheWorld",
-    "tvg-name": "TheWorld",
-    "group": "Документални",
-    "logo": "http://logos.kodibg.org/theworld.png",
-    "dvr": false
-  },
-  "100809": {
-    "name": "B1B Action",
-    "tvg-id": "B1BActionTV",
-    "tvg-name": "B1BActionTV",
-    "group": "Спортни",
-    "logo": "http://logos.kodibg.org/b1b.png",
     "dvr": false
   },
   "100803": {

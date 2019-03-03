@@ -14,6 +14,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import co.bgcs.neterraproxy.pojo.VODSeries;
 import co.bgcs.neterraproxy.pojo.VODSeriesItem;
@@ -27,7 +29,7 @@ class Utils {
         return playLink;
     }
 
-    static String generatePlaylist(String contentHTML, JsonObject channelsJson, String host, int port) {
+    static String generateLivePlaylist(String contentHTML, JsonObject channelsJson, String host, int port) {
         Element channelsPlaylistElement = Jsoup.parse(contentHTML).selectFirst("ul.playlist-items");
         Elements neterraPlaylist = channelsPlaylistElement.select("li");
 
@@ -92,6 +94,26 @@ class Utils {
                 }
                 m3u8.append(String.format("#EXTINF:-1 group-title=\"%s\",%s\nhttp://%s:%s/vod.m3u8?id=%s&tag=%s&name=%s\n",
                         group, title, host, port, dataId, tag, encodedTitle));
+            }
+        }
+        return m3u8.toString();
+    }
+
+    static String generateTimeShiftPlaylist(JsonObject channelsJson, String host, int port) {
+        // Iterate defined channels and add to playlist channels with dvr
+        String group = "Neterra Time Shift";
+        StringBuilder m3u8 = new StringBuilder("#EXTM3U\n");
+        Set<Map.Entry<String, JsonElement>> definedChannels = channelsJson.entrySet();
+
+        for(Map.Entry<String,JsonElement> channelEntry : definedChannels){
+            JsonObject channel = channelEntry.getValue().getAsJsonObject();
+            if (channel.get("dvr").getAsBoolean()) {
+                String chanId = channelEntry.getKey();
+                String name = channel.get("name").getAsString() + " (TS)";
+                String logo = channel.get("logo").getAsString();
+
+                m3u8.append(String.format("#EXTINF:-1 group-title=\"%s\" tvg-id=\"none\" tvg-name=\"none\" tvg-logo=\"%s\",%s\nhttp://%s:%s/timeshift.m3u8?ch=%s\n",
+                        group, logo, name, host, port, chanId));
             }
         }
         return m3u8.toString();
