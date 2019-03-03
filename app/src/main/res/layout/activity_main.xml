@@ -101,8 +101,8 @@
         android:id="@+id/timeShiftHoursLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Час:"
+        android:layout_marginTop="12dp"
+        android:text="Часа:"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -110,38 +110,35 @@
         android:id="@+id/timeShiftMinutesLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:text="Мин."
-        app:layout_constraintStart_toEndOf="@+id/timeShiftHours"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Мин:"
+        app:layout_constraintStart_toEndOf="@+id/timeShiftHoursEditText"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/timeShiftHours"
+        android:id="@+id/timeShiftHoursEditText"
         android:layout_width="59dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="number"
-        android:singleLine="false"
         app:layout_constraintStart_toEndOf="@+id/timeShiftHoursLabel"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:text="3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/timeShiftMinutes"
+        android:id="@+id/timeShiftMinutesEditText"
         android:layout_width="59dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/timeShiftMinutesLabel"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:text="0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </android.support.constraint.ConstraintLayout>

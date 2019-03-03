@@ -66,6 +66,10 @@ public class MainService extends Service implements Pipe {
                 preferences.getString("password", null),
                 getApplicationContext()
         );
+        proxy.setTimeShift(
+                preferences.getInt("timeShiftHours", 3),
+                preferences.getInt("timeShiftMinutes", 0)
+        );
     }
 
     void loadAssets() {

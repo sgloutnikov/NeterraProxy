@@ -14,6 +14,8 @@ import android.os.Environment;
 import android.os.IBinder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean isBound;
     private EditText usernameEditText;
     private EditText passwordEditText;
+    private EditText timeShiftHoursEditText;
+    private EditText timeShiftMinutesEditText;
     private ProgressDialog mProgressDialog;
 
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -68,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
 
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
+        timeShiftHoursEditText = (EditText) findViewById(R.id.timeShiftHoursEditText);
+        timeShiftHoursEditText.addTextChangedListener(timeShiftTextWatcher);
+        timeShiftMinutesEditText = (EditText) findViewById(R.id.timeShiftMinutesEditText);
+        timeShiftMinutesEditText.addTextChangedListener(timeShiftTextWatcher);
 
         Button saveButton = (Button) findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
         bindService(new Intent(this, MainService.class), mConnection, BIND_AUTO_CREATE);
         usernameEditText.setText(sharedPreferences.getString("username", null));
         passwordEditText.setText(sharedPreferences.getString("password", null));
+        timeShiftHoursEditText.setText(Integer.toString(sharedPreferences.getInt("timeShiftHours", 3)));
+        timeShiftMinutesEditText.setText(Integer.toString(sharedPreferences.getInt("timeShiftMinutes", 0)));
 
         final Context context = this;
         appUpdater = new AppUpdaterUtils(context)
@@ -154,7 +164,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("username", usernameEditText.getText().toString().trim());
         editor.putString("password", passwordEditText.getText().toString().trim());
-        editor.commit();
+        editor.putInt("timeShiftHours", Integer.parseInt(timeShiftHoursEditText.getText()
+                .toString().trim()));
+        editor.putInt("timeShiftMinutes", Integer.parseInt(timeShiftMinutesEditText
+                .getText().toString()));
+        editor.apply();
 
         if (isBound) {
             mainService.loadPreferences(sharedPreferences);
@@ -238,5 +252,37 @@ public class MainActivity extends AppCompatActivity {
             mProgressDialog.setProgress(progress[0]);
         }
     }
+
+    TextWatcher timeShiftTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if(timeShiftHoursEditText.getText().length() > 0) {
+                int hours = Integer.parseInt(timeShiftHoursEditText.getText().toString());
+                if (hours < 0 || hours > 12)
+                {
+                    Toast.makeText(MainActivity.this,
+                            "Часовете трябва да са между 0 и 12.",
+                            Toast.LENGTH_SHORT).show();
+                    timeShiftHoursEditText.setText("3");
+                }
+            }
+            if(timeShiftMinutesEditText.getText().length() > 0) {
+                int mins = Integer.parseInt(timeShiftMinutesEditText.getText().toString());
+                if (mins < 0 || mins > 60)
+                {
+                    Toast.makeText(MainActivity.this,
+                            "Минутите трябва да са между 0 и 60.",
+                            Toast.LENGTH_SHORT).show();
+                    timeShiftMinutesEditText.setText("0");
+                }
+            }
+        }
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
 
 }

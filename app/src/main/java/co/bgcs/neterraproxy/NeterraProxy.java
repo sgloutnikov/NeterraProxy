@@ -31,6 +31,8 @@ class NeterraProxy extends NanoHTTPD {
     private final Pipe pipe;
     private String username;
     private String password;
+    private int tsHours;
+    private int tsMin;
     private long expireTime;
     private ClearableCookieJar cookieJar;
     private OkHttpClient client;
@@ -56,6 +58,12 @@ class NeterraProxy extends NanoHTTPD {
 
     void initAssets(JsonObject channelsJson) {
         this.channelsJson = channelsJson;
+    }
+
+    void setTimeShift(int tsHours, int tsMin) {
+        this.tsHours = tsHours;
+        this.tsMin = tsMin;
+        System.out.println("+++ Backend got timeshift changes. " + this.tsHours + " " + this.tsMin);
     }
 
     @Override
