@@ -31,6 +31,7 @@ class NeterraProxy extends NanoHTTPD {
     private final Pipe pipe;
     private String username;
     private String password;
+    private int timeShiftSeconds;
     private long expireTime;
     private ClearableCookieJar cookieJar;
     private OkHttpClient client;
@@ -58,6 +59,10 @@ class NeterraProxy extends NanoHTTPD {
         this.channelsJson = channelsJson;
     }
 
+    void setTimeShift(int tsHours, int tsMin) {
+        this.timeShiftSeconds = (tsHours * 60 * 60) + (tsMin * 60);
+    }
+
     @Override
     public Response serve(IHTTPSession session) {
         Response res = super.serve(session);
@@ -69,21 +74,33 @@ class NeterraProxy extends NanoHTTPD {
             res.addHeader("Location", "http://epg.kodibg.org/dl.php");
         } else if (uri.startsWith("/playlist.m3u8")) {
             List<String> ch = session.getParameters().get("ch");
-            List<String> chName = session.getParameters().get("name");
+            //List<String> chName = session.getParameters().get("name");
 
             if (ch == null) {
                 // Fresh authentication every time playlist is served
                 if(authenticate()) {
                     pipe.setNotification("Now serving: Playlist");
-                    res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getM3U8());
+                    res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getLiveM3U8());
                     res.addHeader("Content-Disposition", "attachment; filename=\"playlist.m3u8\"");
                 } else {
                     pipe.setNotification("Failed to login. Check username and password.");
                 }
             } else {
-                pipe.setNotification("Now serving: " + chName.get(0));
+                //pipe.setNotification("Now serving: " + chName.get(0));
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
-                res.addHeader("Location", getStream(ch.get(0)));
+                res.addHeader("Location", getLiveStream(ch.get(0)));
+            }
+        } else if (uri.startsWith("/timeshift.m3u8")) {
+            List<String> ch = session.getParameters().get("ch");
+
+            if (ch == null) {
+                checkAuthentication();
+                pipe.setNotification("Now serving: Time Shift Playlist");
+                res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getTimeShiftM3U8());
+                res.addHeader("Content-Disposition", "attachment; filename=\"timeshift.m3u8\"");
+            } else {
+                res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
+                res.addHeader("Location", getTimeShiftStream(ch.get(0)));
             }
         } else if (uri.startsWith("/vod.m3u8")) {
             List<String> dataId = session.getParameters().get("id");
@@ -96,7 +113,7 @@ class NeterraProxy extends NanoHTTPD {
                 res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getVODM3U8());
                 res.addHeader("Content-Disposition", "attachment; filename=\"vod.m3u8\"");
             } else {
-                pipe.setNotification("Now serving: " + name.get(0));
+                //pipe.setNotification("Now serving: " + name.get(0));
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
                 res.addHeader("Location", getVODStream(tag.get(0), dataId.get(0)));
             }
@@ -104,7 +121,7 @@ class NeterraProxy extends NanoHTTPD {
         return res;
     }
 
-    private String getStream(String chanId) {
+    private String getLiveStream(String chanId) {
         checkAuthentication();
         String playLinkJson = "";
         String playUrl = "https://neterra.tv/live/play/" + chanId + "?quality=25";
@@ -140,7 +157,15 @@ class NeterraProxy extends NanoHTTPD {
         return Utils.getPlayLink(playLinkJson);
     }
 
-    private String getM3U8() {
+    private String getTimeShiftStream(String chanId) {
+        // Get live stream and replace
+        String liveStream = getLiveStream(chanId);
+        String timeShiftStream = liveStream.replace("/0/60/",
+                "/0/" + this.timeShiftSeconds + "/");
+        return timeShiftStream;
+    }
+
+    private String getLiveM3U8() {
         String neterraContentHTMLString = "";
         Request request = new Request.Builder()
                 .url("https://neterra.tv/live")
@@ -151,7 +176,7 @@ class NeterraProxy extends NanoHTTPD {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Utils.generatePlaylist(neterraContentHTMLString, channelsJson, host, port);
+        return Utils.generateLivePlaylist(neterraContentHTMLString, channelsJson, host, port);
     }
 
     private String getVODM3U8() {
@@ -187,13 +212,18 @@ class NeterraProxy extends NanoHTTPD {
             for (Element item : itemPlaylistElements) {
                 Element urlElement = item.selectFirst("a[href]");
                 String title = urlElement.select("span.playlist-item__title").text();
-                String dataId = urlElement.attr("data-id").toString();
+                String dataId = urlElement.attr("data-id");
                 VODSeriesItem vodSeriesItem = new VODSeriesItem(title, dataId);
                 series.getVodSeriesItemList().add(vodSeriesItem);
             }
         }
 
         return Utils.generateVODPlaylist(seriesList, host, port);
+    }
+
+    // Placeholder method for possible future changes
+    private String getTimeShiftM3U8() {
+        return Utils.generateTimeShiftPlaylist(channelsJson, host, port);
     }
 
     private void checkAuthentication() {
