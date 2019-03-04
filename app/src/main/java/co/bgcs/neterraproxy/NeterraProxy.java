@@ -61,8 +61,6 @@ class NeterraProxy extends NanoHTTPD {
 
     void setTimeShift(int tsHours, int tsMin) {
         this.timeShiftSeconds = (tsHours * 60 * 60) + (tsMin * 60);
-        System.out.println("+++ Backend got timeshift changes. " + tsHours + " "
-                + tsMin + " seconds: " + timeShiftSeconds);
     }
 
     @Override
@@ -162,8 +160,9 @@ class NeterraProxy extends NanoHTTPD {
     private String getTimeShiftStream(String chanId) {
         // Get live stream and replace
         String liveStream = getLiveStream(chanId);
-        System.out.println("+++ Timeshift returning: " + liveStream);
-        return liveStream;
+        String timeShiftStream = liveStream.replace("/0/60/",
+                "/0/" + this.timeShiftSeconds + "/");
+        return timeShiftStream;
     }
 
     private String getLiveM3U8() {
