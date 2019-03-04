@@ -18,9 +18,10 @@ NeterraProxy generates a specialized playlist that points to itself rather than 
 3) Enter your Neterra.tv **Username** and **Password** and press **Save**.
 4) Back out of NeterraProxy (or press Home) to leave it running. **Exit** will terminate NeterraProxy.
 5) Use the following URL to connect NeterraProxy with your favorite IPTV player:
-    * Playlist URL: http://localhost:8889/playlist.m3u8
-    * EPG URL: http://localhost:8889/epg.xml
-    * VOD Favorites: http://localhost:8889/vod.m3u8
+    * Live Playlist: http://localhost:8889/playlist.m3u8
+    * EPG: http://localhost:8889/epg.xml
+    * VOD Favorites Playlist: http://localhost:8889/vod.m3u8
+    * Time Shift Playlist: http://localhost:8889/timeshift.m3u8
 ---
 ## More Instructions [BG]
 

@@ -1,9 +1,9 @@
 {
-  "latestVersion": "1.5.5",
-  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.5.5/neterraproxy-1.5.5.apk",
+  "latestVersion": "1.6.0",
+  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.6.0/neterraproxy-1.6.0.apk",
   "releaseNotes": [
     "Промени:",
-    "- Оправено е обновяването на Видеотека плейлиста.",
-    "- Нови имена и логота за БНТ каналите."
+    "- Добавен е конфигурируем 'time shift' плейлист на: http://localhost:8889/timeshift.m3u8. Чрез него можете да върнете каналите които поддържат time shift назад във времето. До 12 часа за по-известните канали и 8 часа за останалите. Повече информация скоро на Wiki страницата на проекта.",
+    "- Нови канали и групи ."
   ]
 }
