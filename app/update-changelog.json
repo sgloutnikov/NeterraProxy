@@ -1,9 +1,8 @@
 {
-  "latestVersion": "1.6.0",
-  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.6.0/neterraproxy-1.6.0.apk",
+  "latestVersion": "1.6.1",
+  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.6.1/neterraproxy-1.6.1.apk",
   "releaseNotes": [
     "Промени:",
-    "- Добавен е конфигурируем 'time shift' плейлист на: http://localhost:8889/timeshift.m3u8. Чрез него можете да върнете каналите които поддържат time shift назад във времето. До 12 часа за по-известните канали и 8 часа за останалите. Повече информация скоро на Wiki страницата на проекта.",
-    "- Нови канали и групи ."
+    "- Оправене е login, след промени в сайта на Neterra."
   ]
 }
