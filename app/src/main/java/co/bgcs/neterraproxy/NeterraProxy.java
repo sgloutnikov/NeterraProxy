@@ -267,7 +267,7 @@ class NeterraProxy extends NanoHTTPD {
         try {
             okhttp3.Response response = client.newCall(request).execute();
             // Check for something that only exists when authenticated.
-            logged = response.body().string().contains("account.png");
+            logged = response.body().string().contains("/profile");
         } catch (IOException e) {
             e.printStackTrace();
         }
