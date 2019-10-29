@@ -246,8 +246,10 @@ class NeterraProxy extends NanoHTTPD {
                 .build();
         try {
             okhttp3.Response response = client.newCall(getRequest).execute();
+            //TODO: Pull token from <script> tag with regex?
             Document loginPageDoc = Jsoup.parse(response.body().string());
-            token = loginPageDoc.selectFirst("input[name=_token]").val();
+            token = loginPageDoc.getElementById("js--sign-in").selectFirst("input[name=_token]")
+                    .attr("value");
         } catch (IOException e) {
             e.printStackTrace();
         }
