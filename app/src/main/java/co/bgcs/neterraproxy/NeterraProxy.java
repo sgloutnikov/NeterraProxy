@@ -86,7 +86,6 @@ class NeterraProxy extends NanoHTTPD {
                     pipe.setNotification("Failed to login. Check username and password.");
                 }
             } else {
-                //pipe.setNotification("Now serving: " + chName.get(0));
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
                 res.addHeader("Location", getLiveStream(ch.get(0)));
             }
@@ -113,7 +112,6 @@ class NeterraProxy extends NanoHTTPD {
                 res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getVODM3U8());
                 res.addHeader("Content-Disposition", "attachment; filename=\"vod.m3u8\"");
             } else {
-                //pipe.setNotification("Now serving: " + name.get(0));
                 res = newFixedLengthResponse(Response.Status.REDIRECT, "application/x-mpegURL", null);
                 res.addHeader("Location", getVODStream(tag.get(0), dataId.get(0)));
             }
@@ -246,10 +244,8 @@ class NeterraProxy extends NanoHTTPD {
                 .build();
         try {
             okhttp3.Response response = client.newCall(getRequest).execute();
-            //TODO: Pull token from <script> tag with regex?
             Document loginPageDoc = Jsoup.parse(response.body().string());
-            token = loginPageDoc.getElementById("js--sign-in").selectFirst("input[name=_token]")
-                    .attr("value");
+            token = loginPageDoc.selectFirst("input[name=_token]").val();
         } catch (IOException e) {
             e.printStackTrace();
         }
