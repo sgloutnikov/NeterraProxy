@@ -1,8 +1,8 @@
 {
-  "latestVersion": "1.6.2",
-  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.6.2/neterraproxy-1.6.2.apk",
+  "latestVersion": "1.6.3",
+  "url": "https://github.com/sgloutnikov/NeterraProxy/releases/download/v1.6.3/neterraproxy-1.6.3.apk",
   "releaseNotes": [
     "Промени:",
-    "- Оправено е съобщението за грешна парола."
+    "- EPG обновяване."
   ]
 }
