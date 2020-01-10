@@ -47,6 +47,14 @@
     "logo": "http://logos.kodibg.org/btv.png",
     "dvr": true
   },
+  "101218": {
+    "name": "7/8 TV",
+    "tvg-id": "78TV",
+    "tvg-name": "78TV",
+    "group": "Обществени",
+    "logo": "https://assets.neterra.tv/media/tv78.png",
+    "dvr": true
+  },
   "100175": {
     "name": "Евроком",
     "tvg-id": "Eurocom",
@@ -54,6 +62,14 @@
     "group": "Обществени",
     "logo": "http://logos.kodibg.org/evrokom.png",
     "dvr": true
+  },
+  "100909": {
+    "name": "Българе HD",
+    "tvg-id": "BULGARE",
+    "tvg-name": "BULGARE",
+    "group": "Обществени",
+    "logo": "https://logos.kodibg.org/bulgare.png",
+    "dvr": false
   },
   "100189": {
     "name": "Кино Нова",
@@ -279,6 +295,38 @@
     "logo": "http://logos.kodibg.org/automotorsport.png",
     "dvr": false
   },
+  "100642": {
+    "name": "MAX Sport 1",
+    "tvg-id": "MAXSport1",
+    "tvg-name": "MAXSport1",
+    "group": "Спортни",
+    "logo": "https://logos.kodibg.org/maxsport1.png",
+    "dvr": false
+  },
+  "100643": {
+    "name": "MAX Sport 2",
+    "tvg-id": "MAXSport2",
+    "tvg-name": "MAXSport2",
+    "group": "Спортни",
+    "logo": "https://logos.kodibg.org/maxsport2.png",
+    "dvr": false
+  },
+  "100734": {
+    "name": "MAX Sport 3",
+    "tvg-id": "MAXSport3",
+    "tvg-name": "MAXSport3",
+    "group": "Спортни",
+    "logo": "https://logos.kodibg.org/maxsport3.png",
+    "dvr": false
+  },
+  "100824": {
+    "name": "MAX Sport 4",
+    "tvg-id": "MAXSport4",
+    "tvg-name": "MAXSport4",
+    "group": "Спортни",
+    "logo": "https://logos.kodibg.org/maxsport4.png",
+    "dvr": false
+  },
   "100382": {
     "name": "Диема Sport",
     "tvg-id": "DiemaSport",
@@ -433,11 +481,11 @@
     "dvr": false
   },
   "100253": {
-    "name": "Травъл HD",
-    "tvg-id": "TravelHD",
-    "tvg-name": "TravelHD",
+    "name": "This is Bulgaria HD",
+    "tvg-id": "thisisbg",
+    "tvg-name": "thisisbg",
     "group": "Документални",
-    "logo": "http://logos.kodibg.org/travelhd.png",
+    "logo": "https://logos.kodibg.org/thisisbg.png",
     "dvr": false
   },
   "100372": {
@@ -452,7 +500,7 @@
     "name": "Военен ТВ Канал",
     "tvg-id": "VTK",
     "tvg-name": "VTK",
-    "group": "Филмови",
+    "group": "Обществени",
     "logo": "http://logos.kodibg.org/vtk.png",
     "dvr": false
   },
@@ -510,6 +558,14 @@
     "tvg-name": "news",
     "group": "Информационни",
     "logo": "http://logos.kodibg.org/bulgaria24.png",
+    "dvr": false
+  },
+  "100993": {
+    "name": "CodeFashion",
+    "tvg-id": "",
+    "tvg-name": "",
+    "group": "Информационни",
+    "logo": "https://logos.kodibg.org/codefashion.png",
     "dvr": false
   },
   "100173": {
