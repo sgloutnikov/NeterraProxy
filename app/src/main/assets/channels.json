@@ -28,7 +28,7 @@
     "tvg-id": "Nova",
     "tvg-name": "Nova",
     "group": "Обществени",
-    "logo": "http://logos.kodibg.org/novatv.png",
+    "logo": "https://logos.kodibg.org/nova.png",
     "dvr": true
   },
   "100143": {
@@ -60,7 +60,7 @@
     "tvg-id": "Eurocom",
     "tvg-name": "Eurocom",
     "group": "Обществени",
-    "logo": "http://logos.kodibg.org/evrokom.png",
+    "logo": "https://logos.kodibg.org/eurocom.png",
     "dvr": true
   },
   "100909": {
@@ -191,12 +191,20 @@
     "logo": "http://logos.kodibg.org/ring.png",
     "dvr": true
   },
+  "101350": {
+    "name": "Body in Balance",
+    "tvg-id": "",
+    "tvg-name": "",
+    "group": "Спортни",
+    "logo": "https://assets.neterra.tv/media/bib.png",
+    "dvr": false
+  },
   "100177": {
     "name": "ТВ Европа",
     "tvg-id": "tveurope",
     "tvg-name": "tveurope",
     "group": "Информационни",
-    "logo": "http://logos.kodibg.org/tveuropa.png",
+    "logo": "https://logos.kodibg.org/tveurope.png",
     "dvr": true
   },
   "100181": {
@@ -653,7 +661,7 @@
     "tvg-id": "TVDarts",
     "tvg-name": "TVDarts",
     "group": "Информационни",
-    "logo": "http://logos.kodibg.org/bbcone.png",
+    "logo": "https://logos.kodibg.org/tvdarts.png",
     "dvr": false
   },
   "100798": {
@@ -686,6 +694,14 @@
     "tvg-name": "",
     "group": "Радио",
     "logo": "https://assets.neterra.tv/media/vega.png",
+    "dvr": false
+  },
+  "101074": {
+    "name": "ТВ Шумен",
+    "tvg-id": "Shumen",
+    "tvg-name": "Shumen",
+    "group": "Информационни",
+    "logo": "https://logos.kodibg.org/tvshumen.png",
     "dvr": false
   }
 }
