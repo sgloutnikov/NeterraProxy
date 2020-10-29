@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 .withListener(new AppUpdaterUtils.UpdateListener() {
                     @Override
                     public void onSuccess(final Update update, Boolean isUpdateAvailable) {
-                        if(isUpdateAvailable) {
+                        if (isUpdateAvailable) {
                             AlertDialog dlg = new AlertDialog.Builder(context)
                                     .setTitle("Нова Версия: " + update.getLatestVersion())
                                     .setMessage(update.getReleaseNotes())
@@ -257,22 +257,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
+
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if(timeShiftHoursEditText.getText().length() > 0) {
+            if (timeShiftHoursEditText.getText().length() > 0) {
                 int hours = Integer.parseInt(timeShiftHoursEditText.getText().toString());
-                if (hours < 0 || hours > 12)
-                {
+                if (hours < 0 || hours > 12) {
                     Toast.makeText(MainActivity.this,
                             "Часовете трябва да са между 0 и 12.",
                             Toast.LENGTH_SHORT).show();
                     timeShiftHoursEditText.setText("3");
                 }
             }
-            if(timeShiftMinutesEditText.getText().length() > 0) {
+            if (timeShiftMinutesEditText.getText().length() > 0) {
                 int mins = Integer.parseInt(timeShiftMinutesEditText.getText().toString());
-                if (mins < 0 || mins > 60)
-                {
+                if (mins < 0 || mins > 60) {
                     Toast.makeText(MainActivity.this,
                             "Минутите трябва да са между 0 и 60.",
                             Toast.LENGTH_SHORT).show();
@@ -280,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
         @Override
         public void afterTextChanged(Editable s) {
         }

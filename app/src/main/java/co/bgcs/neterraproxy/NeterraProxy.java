@@ -8,7 +8,6 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.google.gson.JsonObject;
 
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -78,7 +77,7 @@ class NeterraProxy extends NanoHTTPD {
 
             if (ch == null) {
                 // Fresh authentication every time playlist is served
-                if(authenticate()) {
+                if (authenticate()) {
                     pipe.setNotification("Now serving: Playlist");
                     res = newFixedLengthResponse(Response.Status.OK, "application/x-mpegURL", getLiveM3U8());
                     res.addHeader("Content-Disposition", "attachment; filename=\"playlist.m3u8\"");
@@ -268,7 +267,7 @@ class NeterraProxy extends NanoHTTPD {
             e.printStackTrace();
         }
 
-        if(logged) {
+        if (logged) {
             expireTime = System.currentTimeMillis() + 28800000;
         }
         return logged;
