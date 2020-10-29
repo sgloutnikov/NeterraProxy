@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import org.jsoup.Jsoup;
-import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -42,7 +41,9 @@ class Utils {
             Element chanLink = chan.selectFirst("a[href]");
             if (chanLink != null) {
                 chanName = chanLink.attr("title");
-            } else { continue; }
+            } else {
+                continue;
+            }
             chanId = chan.getElementsByClass("js-pl-favorite playlist-item__favorite")
                     .first().attr("data-id");
 
@@ -51,7 +52,7 @@ class Utils {
             String group = "";
             String logo = "";
 
-            JsonObject definedChannel  = channelsJson.getAsJsonObject(chanId);
+            JsonObject definedChannel = channelsJson.getAsJsonObject(chanId);
             if (definedChannel != null) {
                 chanName = definedChannel.get("name").getAsString();
                 tvgId = definedChannel.get("tvg-id").getAsString();
@@ -105,7 +106,7 @@ class Utils {
         StringBuilder m3u8 = new StringBuilder("#EXTM3U\n");
         Set<Map.Entry<String, JsonElement>> definedChannels = channelsJson.entrySet();
 
-        for(Map.Entry<String,JsonElement> channelEntry : definedChannels){
+        for (Map.Entry<String, JsonElement> channelEntry : definedChannels) {
             JsonObject channel = channelEntry.getValue().getAsJsonObject();
             if (channel.get("dvr").getAsBoolean()) {
                 String chanId = channelEntry.getKey();
